@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "react",
+    "moduleResolution": "Node",
+    "strict": true,
+    "target": "ES2015",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*"]
+}
