@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-jss": "^10.6.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.10.4",
@@ -28,10 +29,18 @@
       "babel-preset-nano-react-app"
     ],
     "plugins": [
-      ["module-resolver", {
-        "root" : ["./"],
-        "extensions": [".ts", ".tsx"]
-      }]
+      [
+        "module-resolver",
+        {
+          "root": [
+            "./"
+          ],
+          "extensions": [
+            ".ts",
+            ".tsx"
+          ]
+        }
+      ]
     ]
   }
 }
