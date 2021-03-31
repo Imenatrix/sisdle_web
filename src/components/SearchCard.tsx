@@ -5,13 +5,13 @@ import EntityList from 'src/components/EntityList'
 
 const SearchCard : React.FC = () => {
 
-    return (
-       <div>
-           <Tabs/>
-           <SearchBar/>
-           <EntityList/>
-       </div> 
-    )
+	return (
+	   <div>
+		   <Tabs/>
+		   <SearchBar/>
+		   <EntityList/>
+	   </div> 
+	)
 
 }
 

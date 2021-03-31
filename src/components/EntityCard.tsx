@@ -3,11 +3,11 @@ import EditButton from 'src/components/EditButton'
 
 const EntityCard : React.FC = () => {
 
-    return (
-        <div>
-            <EditButton/>
-        </div>
-    )
+	return (
+		<div>
+			<EditButton/>
+		</div>
+	)
 
 }
 
