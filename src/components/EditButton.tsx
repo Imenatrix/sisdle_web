@@ -6,7 +6,9 @@ const EditButton : React.FC = () => {
 	// em EntityCard
 	return (
 		<button>
-			// botão azul com icone de lapis para edição
+			{
+				// botão azul com icone de lapis para edição
+			}
 		</button>
 	)
 

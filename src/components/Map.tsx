@@ -4,7 +4,9 @@ const Map : React.FC = () => {
 
 	return (
 		<div>
-			// aqui vai o mapa (leaflet, Mapbox GL JS, etc)
+			{
+				// aqui vai o mapa (leaflet, Mapbox GL JS, etc)
+			}
 		</div>
 	)
 
