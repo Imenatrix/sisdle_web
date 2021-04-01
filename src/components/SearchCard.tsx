@@ -10,9 +10,11 @@ const SearchCard : React.FC = () => {
 
 	return (
 	   <div className={styles.container}>
-		   <Tabs/>
-		   <SearchBar/>
-		   <EntityList/>
+			<div className={styles.content}>
+				<Tabs/>
+				<SearchBar/>
+				<EntityList/>
+			</div>
 	   </div> 
 	)
 
@@ -22,10 +24,14 @@ export default SearchCard
 
 const useStyles = createUseStyles({
 	container : {
+		display : 'flex',
 		flex : 0.333,
 		backgroundColor : 'blue',
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em',
-		padding : '1em'
+	},
+	content  : {
+		flex : 1,
+		padding : '1em',
 	}
 })
