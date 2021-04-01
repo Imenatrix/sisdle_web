@@ -36,8 +36,8 @@ const useStyles = createUseStyles({
 		aspectRatio : 1,
 		padding : 0,
 		backgroundColor : '#2196F3',
-		borderTopRightRadius : '100vmax',
-		borderBottomRightRadius : '100vmax',
+		borderTopRightRadius : '0.85em',
+		borderBottomRightRadius : '0.85em',
 		'&:active' : {
 			opacity : 0.9
 		},

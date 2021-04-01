@@ -23,6 +23,9 @@ export default SearchCard
 const useStyles = createUseStyles({
 	container : {
 		flex : 0.333,
-		backgroundColor : 'blue'
+		backgroundColor : 'blue',
+		borderTopRightRadius : '0.85em',
+		borderBottomRightRadius : '0.85em',
+		padding : '1em'
 	}
 })
