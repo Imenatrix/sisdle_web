@@ -11,8 +11,10 @@ const App : React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<Map/>
-			<SearchCard/>
-			<EntityCard/>
+			<div className={styles.foreground}>
+				<SearchCard/>
+				<EntityCard/>
+			</div>
 		</div>
 	)
 
@@ -28,5 +30,11 @@ const useStyles = createUseStyles({
 		'display' : 'flex',
 		'width' : '100vw',
 		'height' : '100vh'
+	},
+	foreground : {
+		display : 'flex',
+		position : 'absolute',
+		width : '100%',
+		height : '100%'
 	}
 })

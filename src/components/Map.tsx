@@ -1,9 +1,12 @@
 import React from 'react'
+import { createUseStyles } from 'react-jss'
 
 const Map : React.FC = () => {
 
+	const styles = useStyles()
+
 	return (
-		<div>
+		<div className={styles.container}>
 			{
 				// aqui vai o mapa (leaflet, Mapbox GL JS, etc)
 			}
@@ -12,4 +15,11 @@ const Map : React.FC = () => {
 
 }
 
-export default Map 
+export default Map
+
+const useStyles = createUseStyles({
+	container : {
+		backgroundColor : 'blue',
+		flex : 1
+	}
+})
