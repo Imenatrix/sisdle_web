@@ -1,13 +1,17 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-const EditButton : React.FC = () => {
+interface Props {
+	className : string
+}
+
+const EditButton : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
 	// deve mudar entre visualização e formulario de edição
 	// em EntityCard
 	return (
-		<button className={styles.btn}>
+		<button className={styles.btn + ' ' + props.className}>
 			{
 				// botão azul com icone de lapis para edição
 			}

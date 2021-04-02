@@ -8,7 +8,9 @@ const EntityCard : React.FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<EditButton/>
+			<div className={styles.header}>
+				<EditButton className={styles.btnEdit}/>
+			</div>
 		</div>
 	)
 
@@ -23,5 +25,13 @@ const useStyles = createUseStyles({
 		margin : ['1em', 0],
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em'
+	},
+	header : {
+		display : 'flex',
+		flexDirection : 'column',
+		padding : '1em'
+	},
+	btnEdit : {
+		alignSelf : 'flex-end'
 	}
 })
