@@ -20,7 +20,7 @@ export default EntityCard
 
 const useStyles = createUseStyles({
 	container : {
-		backgroundColor : 'green',
+		backgroundColor : 'white',
 		flex : 0.333,
 		margin : ['1em', 0],
 		borderTopRightRadius : '0.85em',

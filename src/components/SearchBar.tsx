@@ -17,7 +17,9 @@ export default SearchBar
 
 const useStyles = createUseStyles({
 	container : {
-		display : 'flex'
+		display : 'flex',
+		boxShadow: [0, 0, 10, 'rgba(0, 0, 0, 0.3)'],
+		borderRadius : '0.85em'
 	},
 	txtSearch : {
 		flex : 1,

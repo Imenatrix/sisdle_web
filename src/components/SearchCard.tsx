@@ -26,7 +26,9 @@ const useStyles = createUseStyles({
 	container : {
 		display : 'flex',
 		flex : 0.333,
-		backgroundColor : 'blue',
+		backgroundColor : 'white',
+		boxShadow : [7, 0, 10, 'rgba(0, 0, 0, 0.3)'],
+		zIndex : 1,
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em',
 	},
