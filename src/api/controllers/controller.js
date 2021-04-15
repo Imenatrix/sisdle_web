@@ -1,24 +1,24 @@
 const express = require('express');
 
-const Bin = require('../models/bin');
+const Lixeira = require('../models/lixeira');
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
     try {
-        const bin = await Bin.create(req.body);
+        const lixeira = await Lixeira.create(req.body);
 
-        return res.send({ bin });
+        return res.send({ lixeira });
     } catch (err) {
         return res.status(400).send({ error: 'Registration failed' });
     }
 });
 
-router.get('/bins', async (req, res) => {
+router.get('/lixeiras', async (req, res) => {
     try {
-        const bins = await Bin.find({});
+        const lixeiras = await Lixeira.find({});
         return res.send({
             type: 'FeatureCollection',
-            features: bins
+            features: lixeiras
         });
     }
     catch (err) {
@@ -26,4 +26,4 @@ router.get('/bins', async (req, res) => {
     }
 })
 
-module.exports = app => app.use('/bin', router);
+module.exports = app => app.use('/lixeira', router);
