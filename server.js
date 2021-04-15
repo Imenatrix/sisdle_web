@@ -9,7 +9,7 @@ const handle = nextapp.getRequestHandler()
 nextapp.prepare().then(() => {
     const app = express()
 
-    require('src/api/controllers/authController')(app);
+    require('src/api/controllers/controller')(app);
 
     app.listen(port, (err) => {
         if (err) throw err
