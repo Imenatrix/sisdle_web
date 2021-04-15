@@ -1,4 +1,5 @@
 const env = process.env.NODE_ENV || 'dev';
+const password = process.env.MONGODB_PASSWORD
 
 const config = () => {
     switch (env) {
