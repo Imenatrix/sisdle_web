@@ -31,6 +31,6 @@ const LixeiraSchema = new mongoose.Schema({
     }
 });
 // .Î.
-const Lixeira = mongoose.model('Lixeira', BinSchema);
+const Lixeira = mongoose.model('Lixeira', LixeiraSchema);
 
 module.exports = Lixeira;
