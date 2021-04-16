@@ -27,6 +27,14 @@ const LixeiraSchema = new mongoose.Schema({
         capacity: {
             type: Number,
             required: true,
+        },
+        distanceCover: {
+            type: Number,
+            required: true,
+        },
+        distanceBottom: {
+            type: Number,
+            required: true,
         }
     }
 });
