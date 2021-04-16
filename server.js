@@ -8,7 +8,7 @@ const handle = nextapp.getRequestHandler()
 
 nextapp.prepare().then(() => {
     const app = express()
-
+    app.use(express.json())
     require('./src/api/controllers/controller')(app);
 
     app.all('*', (req, res) => {
