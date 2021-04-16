@@ -11,6 +11,10 @@ nextapp.prepare().then(() => {
 
     require('./src/api/controllers/controller')(app);
 
+    app.all('*', (req, res) => {
+        return handle(req, res)
+    })
+
     app.listen(port, (err) => {
         if (err) throw err
         console.log(`> Servidor iniciado em: http://localhost:${port}`)
