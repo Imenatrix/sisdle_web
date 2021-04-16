@@ -3,7 +3,7 @@ const express = require('express');
 const Lixeira = require('../models/lixeira');
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
+router.post('/lixeira', async (req, res) => {
     try {
         const lixeira = await Lixeira.create(req.body);
 
@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/lixeiras', async (req, res) => {
+router.get('/lixeira', async (req, res) => {
     try {
         const lixeiras = await Lixeira.find({});
         return res.send({
@@ -26,4 +26,4 @@ router.get('/lixeiras', async (req, res) => {
     }
 })
 
-module.exports = app => app.use('/lixeira', router);
+module.exports = app => app.use('/', router);
