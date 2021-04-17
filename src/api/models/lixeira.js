@@ -38,7 +38,5 @@ const LixeiraSchema = new mongoose.Schema({
         }
     }
 });
-// .Î.
-const Lixeira = mongoose.model('Lixeira', LixeiraSchema);
 
-module.exports = Lixeira;
+module.exports = mongoose.models.Lixeira || mongoose.model('Lixeira', LixeiraSchema);
