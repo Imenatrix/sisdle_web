@@ -22,7 +22,7 @@ router.get('/lixeira', async (req, res) => {
 
         return res.send({
             type: 'FeatureCollection',
-            features: lixeiras.map
+            features: lixeiras
         });
     }
     catch (err) {
