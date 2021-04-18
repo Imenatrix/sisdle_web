@@ -1,5 +1,6 @@
-const express = require('express')
-const next = require('next')
+import express from 'express';
+import next from 'next';
+import controller from './src/api/controllers/controller';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -9,7 +10,7 @@ const handle = nextapp.getRequestHandler()
 nextapp.prepare().then(() => {
     const app = express()
     app.use(express.json())
-    require('./src/api/controllers/controller')(app);
+    controller(app);
 
     app.all('*', (req, res) => {
         return handle(req, res)
