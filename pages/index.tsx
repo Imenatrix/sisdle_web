@@ -3,16 +3,24 @@ import Map from 'src/components/Map'
 import SearchCard from 'src/components/SearchCard'
 import EntityCard from 'src/components/EntityCard'
 import { createUseStyles } from 'react-jss'
+import LixeiraModel, { Lixeira } from 'src/api/models/lixeira'
+import { GetServerSideProps } from 'next'
 
-const App : React.FC = () => {
+interface Props {
+    lixeiras : Array<Lixeira>
+}
+
+const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+
+    const lixeiras = props.lixeiras
 
 	return (
 		<div className={styles.container}>
 			<Map/>
 			<div className={styles.foreground}>
-				<SearchCard/>
+				<SearchCard lixeiras={lixeiras}/>
 				<EntityCard/>
 			</div>
 		</div>
@@ -21,6 +29,15 @@ const App : React.FC = () => {
 }
 
 export default App
+
+export const getServerSideProps : GetServerSideProps = async (ctx) => {
+    const lixeiras = await LixeiraModel.find({})
+    return {
+        props : {
+            lixeiras : JSON.parse(JSON.stringify(lixeiras))
+        }
+    }
+}
 
 const useStyles = createUseStyles({
 	'@global body' : {
