@@ -3,17 +3,24 @@ import Tabs from 'src/components/Tabs'
 import SearchBar from 'src/components/SearchBar'
 import EntityList from 'src/components/EntityList'
 import { createUseStyles } from 'react-jss'
+import { Lixeira } from 'src/api/models/lixeira'
 
-const SearchCard : React.FC = () => {
+interface Props {
+    lixeiras : Array<Lixeira>
+}
+
+const SearchCard : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+
+    const lixeiras = props.lixeiras
 
 	return (
 	   <div className={styles.container}>
 			<div className={styles.content}>
 				<Tabs/>
 				<SearchBar/>
-				<EntityList/>
+				<EntityList lixeiras={lixeiras}/>
 			</div>
 	   </div> 
 	)
