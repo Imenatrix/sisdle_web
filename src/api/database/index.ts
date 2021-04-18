@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 mongoose.connect('mongodb+srv://dbUser:' + process.env.MONGODB_PASSWORD + '@sisdlecluster.e1e0p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -7,4 +7,4 @@ mongoose.connect('mongodb+srv://dbUser:' + process.env.MONGODB_PASSWORD + '@sisd
         useCreateIndex: true
     });
 
-module.exports = mongoose;
+export default mongoose;
