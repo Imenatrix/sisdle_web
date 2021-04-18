@@ -1,11 +1,20 @@
 import React from 'react'
 import LixeiraPod from 'src/components/LixeiraPod'
+import lixeira, { Lixeira } from 'src/api/models/lixeira'
 
-const EntityList : React.FC = () => {
+interface Props {
+    lixeiras : Array<Lixeira>
+}
+
+const EntityList : React.FC<Props> = (props) => {
+
+    const lixeiras = props.lixeiras
 
 	return (
 		<div>
-			<LixeiraPod/>
+            {lixeiras.map(lixeira => (
+                <LixeiraPod key={lixeira._id} lixeira={lixeira}/>
+            ))}
 		</div>
 	)
 }
