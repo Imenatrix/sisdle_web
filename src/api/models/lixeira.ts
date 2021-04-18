@@ -40,6 +40,7 @@ const LixeiraSchema = new mongoose.Schema({
 });
 
 export interface Lixeira {
+    _id : string
     type : 'Feature'
     geometry : {
         type : 'Point'
