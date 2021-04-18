@@ -1,7 +1,6 @@
-const { json } = require('express');
-const express = require('express');
+import express from 'express';
+import Lixeira from '../models/lixeira';
 
-const Lixeira = require('../models/lixeira');
 const router = express.Router();
 
 router.post('/lixeira', async (req, res) => {
@@ -30,4 +29,4 @@ router.get('/lixeira', async (req, res) => {
     }
 })
 
-module.exports = app => app.use('/', router);
+export default app => app.use('/', router);
