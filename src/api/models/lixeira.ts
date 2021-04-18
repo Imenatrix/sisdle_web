@@ -1,4 +1,4 @@
-const mongoose = require('../database');
+import mongoose from '../database';
 
 const LixeiraSchema = new mongoose.Schema({
     type: {
@@ -39,4 +39,4 @@ const LixeiraSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.models.Lixeira || mongoose.model('Lixeira', LixeiraSchema);
+export default mongoose.models.Lixeira || mongoose.model('Lixeira', LixeiraSchema);
