@@ -17,8 +17,8 @@ const LixeiraPod : React.FC<Props> = (props) => {
 		<div className={styles.container}>
 			<Capacitometer/>
 			<div className={styles.txtContainer}>
-				<div>{lixeira.properties.location}</div>
-				<div>{lixeira.properties.description}</div>
+				<div className={styles.txtLocation}>{lixeira.properties.location}</div>
+				<div className={styles.txtDescription}>{lixeira.properties.description}</div>
 			</div>
 		</div>
 	)
@@ -38,5 +38,12 @@ const useStyles = createUseStyles({
 	txtContainer : {
 		flex : 1,
 		padding : '0.5em'
-	}
+	},
+    txtLocation : {
+
+    },
+    txtDescription : {
+        marginTop : '0.5em',
+        fontSize : 10
+    }
 })
