@@ -1,17 +1,24 @@
 import React from 'react'
 import Capacitometer from 'src/components/Capacitometer'
 import { createUseStyles } from 'react-jss'
+import { Lixeira } from 'src/api/models/lixeira'
 
-const LixeiraPod : React.FC = () => {
+interface Props {
+    lixeira : Lixeira
+}
+
+const LixeiraPod : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+
+    const lixeira = props.lixeira
 
 	return (
 		<div className={styles.container}>
 			<Capacitometer/>
 			<div className={styles.txtContainer}>
-				<div>Lorem, ipsum.</div>
-				<div>Lorem ipsum dolor sit.</div>
+				<div>{lixeira.properties.location}</div>
+				<div>{lixeira.properties.description}</div>
 			</div>
 		</div>
 	)
