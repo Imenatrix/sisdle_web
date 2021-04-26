@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
 		display : 'flex',
 		flex : 0.333,
 		backgroundColor : 'white',
-		boxShadow : [7, 0, 10, 'rgba(0, 0, 0, 0.3)'],
+		boxShadow : [1, 0, 7, 'rgba(0, 0, 0, 0.3)'],
 		zIndex : 1,
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em',
