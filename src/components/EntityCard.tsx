@@ -27,7 +27,9 @@ const useStyles = createUseStyles({
 		margin : ['1em', 0],
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em',
-        padding : '1em'
+        padding : '1em',
+        display : 'flex',
+        flexDirection : 'column'
 	},
 	header : {
 		display : 'flex',
