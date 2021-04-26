@@ -22,7 +22,6 @@ const useStyles = createUseStyles<'container' | 'empty' | 'full', {capacity : nu
 		display : 'flex',
 		flexDirection : 'column',
 		flex : 0.1,
-		boxShadow: [0, 0, 5, 'rgba(0, 0, 0, 0.3)'],
 	},
 	empty : {
 		flex : props => 100 - props.capacity,

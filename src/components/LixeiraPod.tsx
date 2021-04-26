@@ -37,7 +37,8 @@ const useStyles = createUseStyles({
 	},
 	txtContainer : {
 		flex : 1,
-		padding : '0.5em'
+		padding : '0.5em',
+        borderLeft : ['solid', 'lightgray', 1]
 	},
     txtLocation : {
 
