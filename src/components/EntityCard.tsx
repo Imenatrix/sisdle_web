@@ -1,6 +1,7 @@
 import React from 'react'
 import EditButton from 'src/components/EditButton'
 import { createUseStyles } from 'react-jss'
+import LixeiraForm from 'src/components/LixeiraForm'
 
 const EntityCard : React.FC = () => {
 
@@ -11,6 +12,7 @@ const EntityCard : React.FC = () => {
 			<div className={styles.header}>
 				<EditButton className={styles.btnEdit}/>
 			</div>
+            <LixeiraForm/>
 		</div>
 	)
 
