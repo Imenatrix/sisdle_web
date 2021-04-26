@@ -26,12 +26,12 @@ const useStyles = createUseStyles({
 		flex : 0.333,
 		margin : ['1em', 0],
 		borderTopRightRadius : '0.85em',
-		borderBottomRightRadius : '0.85em'
+		borderBottomRightRadius : '0.85em',
+        padding : '1em'
 	},
 	header : {
 		display : 'flex',
 		flexDirection : 'column',
-		padding : '1em'
 	},
 	btnEdit : {
 		alignSelf : 'flex-end'
