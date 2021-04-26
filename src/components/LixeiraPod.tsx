@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
 		overflow : 'hidden',
 		display : 'flex',
 		borderRadius : '0.85em',
-		boxShadow: [0, 0, 10, 'rgba(0, 0, 0, 0.3)'],
+		border : ['solid', 'lightgray', 1],
 		margin : ['1em', 0]
 	},
 	txtContainer : {
