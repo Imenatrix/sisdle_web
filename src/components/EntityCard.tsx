@@ -2,6 +2,7 @@ import React from 'react'
 import EditButton from 'src/components/EditButton'
 import { createUseStyles } from 'react-jss'
 import LixeiraForm from 'src/components/LixeiraForm'
+import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 const EntityCard : React.FC = () => {
 
@@ -12,7 +13,11 @@ const EntityCard : React.FC = () => {
 			<div className={styles.header}>
 				<EditButton className={styles.btnEdit}/>
 			</div>
-            <LixeiraForm/>
+            <SelectedEntityContext.Consumer>
+                {({selected, setSelected}) => selected != undefined && (
+                    <LixeiraForm lixeira={selected}/>
+                )}
+            </SelectedEntityContext.Consumer>
 		</div>
 	)
 
