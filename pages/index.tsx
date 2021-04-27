@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Map from 'src/components/Map'
 import SearchCard from 'src/components/SearchCard'
 import EntityCard from 'src/components/EntityCard'
 import { createUseStyles } from 'react-jss'
 import LixeiraModel, { Lixeira } from 'src/api/models/lixeira'
 import { GetServerSideProps } from 'next'
+import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 interface Props {
     lixeiras : Array<Lixeira>
@@ -13,17 +14,20 @@ interface Props {
 const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
-
     const lixeiras = props.lixeiras
 
+    const [selectedEntity, setSelectedEntity] = useState<Lixeira>()
+
 	return (
-		<div className={styles.container}>
-			<Map/>
-			<div className={styles.foreground}>
-				<SearchCard lixeiras={lixeiras}/>
-				<EntityCard/>
-			</div>
-		</div>
+        <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
+            <div className={styles.container}>
+                <Map/>
+                <div className={styles.foreground}>
+                    <SearchCard lixeiras={lixeiras}/>
+                    <EntityCard/>
+                </div>
+            </div>
+        </SelectedEntityContext.Provider>
 	)
 
 }
