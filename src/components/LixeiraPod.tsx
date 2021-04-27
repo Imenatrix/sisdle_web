@@ -2,6 +2,7 @@ import React from 'react'
 import Capacitometer from 'src/components/Capacitometer'
 import { createUseStyles } from 'react-jss'
 import { Lixeira } from 'src/api/models/lixeira'
+import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 interface Props {
     lixeira : Lixeira
@@ -14,13 +15,17 @@ const LixeiraPod : React.FC<Props> = (props) => {
     const lixeira = props.lixeira
 
 	return (
-		<div className={styles.container}>
-			<Capacitometer/>
-			<div className={styles.txtContainer}>
-				<div className={styles.txtLocation}>{lixeira.properties.location}</div>
-				<div className={styles.txtDescription}>{lixeira.properties.description}</div>
-			</div>
-		</div>
+        <SelectedEntityContext.Consumer>
+            {({selected, setSelected}) => (
+                <div className={styles.container} onClick={() => setSelected(lixeira)}>
+                    <Capacitometer/>
+                    <div className={styles.txtContainer}>
+                        <div className={styles.txtLocation}>{lixeira.properties.location}</div>
+                        <div className={styles.txtDescription}>{lixeira.properties.description}</div>
+                    </div>
+                </div>
+            )}
+        </SelectedEntityContext.Consumer>
 	)
 
 }
