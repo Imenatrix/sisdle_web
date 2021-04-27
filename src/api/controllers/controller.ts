@@ -16,8 +16,14 @@ router.post('/lixeira', async (req, res) => {
 
 router.get('/lixeira', async (req, res) => {
     try {
-        const lixeiras = await Lixeira.find({})
+        const query = await (await Lixeira.find({}))
 
+        const lixeiras = JSON.parse(JSON.stringify(query)).map(lixeira => ({
+            ...lixeira,
+            _id: undefined,
+            __v: undefined,
+            id: lixeira._id
+        }))
 
         return res.send({
             type: 'FeatureCollection',
