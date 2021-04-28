@@ -1,5 +1,6 @@
 import express from 'express';
 import Lixeira from '../models/lixeira';
+import { parseLixeiraToPlainObject } from '../library/functions';
 
 const router = express.Router();
 
@@ -18,16 +19,9 @@ router.get('/lixeira', async (req, res) => {
     try {
         const query = await (await Lixeira.find({}))
 
-        const lixeiras = JSON.parse(JSON.stringify(query)).map(lixeira => ({
-            ...lixeira,
-            _id: undefined,
-            __v: undefined,
-            id: lixeira._id
-        }))
-
         return res.send({
             type: 'FeatureCollection',
-            features: lixeiras
+            features: parseLixeiraToPlainObject(query)
         });
     }
     catch (err) {
