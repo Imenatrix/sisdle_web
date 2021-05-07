@@ -31,39 +31,39 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	return (
 		<div className={styles.container}>
 			<label className={styles.lbl} htmlFor="location">Location:</label>
-			<input value={location} className={styles.txt} type="text" id="location"/>
+			<input value={location} onChange={(event) => setLocation(event.target.value)} className={styles.txt} type="text" id="location"/>
 
 			<label className={styles.lbl} htmlFor="capacity">Capacity:</label>
-			<input value={capacity} className={styles.txt} type="number" id="capacity"/>
+			<input value={capacity} onChange={(event) => setCapacity(event.target.valueAsNumber)} className={styles.txt} type="number" id="capacity"/>
 
 			<div className={styles.hbox}>
 				<div className={styles.vbox}>
 					<label className={styles.lbl} htmlFor="longitude">Longitude:</label>
-					<input value={longitude} className={styles.txt} type="number" id="longitude"/>
+					<input value={longitude} onChange={(event) => setLongitude(event.target.valueAsNumber)} className={styles.txt} type="number" id="longitude"/>
 				</div>
 
 				<div className={styles.spacer}/>
 
 				<div className={styles.vbox}>
 					<label className={styles.lbl} htmlFor="latitude">Latitude:</label>
-					<input value={latitude} className={styles.txt} type="number" id="latitude"/>
+					<input value={latitude} onChange={(event) => setLatitude(event.target.valueAsNumber)} className={styles.txt} type="number" id="latitude"/>
 				</div>
 			</div>
 
 			<label className={styles.lbl} htmlFor="description">Description:</label>
-			<textarea value={description} rows={0} cols={0} className={styles.txa} id="description"/>
+			<textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={0} cols={0} className={styles.txa} id="description"/>
 
 			<div className={styles.hbox}>
 				<div className={styles.vbox}>
 					<label className={styles.lbl} htmlFor="distanceCover">Distance to cover:</label>
-					<input value={distanceCover} className={styles.txt} type="number" id="distanceCover"/>
+					<input value={distanceCover} onChange={(event) => setDistanceCover(event.target.valueAsNumber)} className={styles.txt} type="number" id="distanceCover"/>
 				</div>
 
 				<div className={styles.spacer}/>
 
 				<div className={styles.vbox}>
 					<label className={styles.lbl} htmlFor="distanceBottom">Distance to bottom:</label>
-					<input value={distanceBottom} className={styles.txt} type="number" id="distanceBottom"/>
+					<input value={distanceBottom} onChange={(event) => setDistanceBottom(event.target.valueAsNumber)} className={styles.txt} type="number" id="distanceBottom"/>
 				</div>
 			</div>
 		</div>
