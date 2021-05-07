@@ -42,5 +42,7 @@ const useStyles = createUseStyles({
 	content  : {
 		flex : 1,
 		padding : '1em',
+        display : 'flex',
+        flexDirection : 'column'
 	}
 })
