@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EditButton from 'src/components/EditButton'
 import { createUseStyles } from 'react-jss'
 import LixeiraForm from 'src/components/LixeiraForm'
@@ -8,14 +8,16 @@ const EntityCard : React.FC = () => {
 
 	const styles = useStyles()
 
+    const [savePressed, setSavePressed] = useState(false)
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<EditButton className={styles.btnEdit}/>
+				<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
 			</div>
             <SelectedEntityContext.Consumer>
                 {({selected, setSelected}) => selected != undefined && (
-                    <LixeiraForm lixeira={selected}/>
+                    <LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
                 )}
             </SelectedEntityContext.Consumer>
 		</div>

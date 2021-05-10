@@ -3,7 +3,9 @@ import { createUseStyles } from 'react-jss'
 import { Lixeira } from 'src/api/models/lixeira'
 
 interface Props {
-	lixeira : Lixeira
+	lixeira : Lixeira,
+    setSavePressed : () => void
+    savePressed : boolean
 }
 
 const LixeiraForm : React.FC<Props> = (props) => {
@@ -12,8 +14,8 @@ const LixeiraForm : React.FC<Props> = (props) => {
 
 	const [location, setLocation] = useState(props.lixeira.properties.location)
 	const [capacity, setCapacity] = useState(props.lixeira.properties.capacity)
-	const [longitude, setLongitude] = useState(props.lixeira.geometry.coordinates[0])
 	const [latitude, setLatitude] = useState(props.lixeira.geometry.coordinates[1])
+	const [longitude, setLongitude] = useState(props.lixeira.geometry.coordinates[0])
 	const [description, setDescription] = useState(props.lixeira.properties.description)
 	const [distanceCover, setDistanceCover] = useState(props.lixeira.properties.distanceCover)
 	const [distanceBottom, setDistanceBottom] = useState(props.lixeira.properties.distanceBottom)
@@ -21,12 +23,47 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	useEffect(() => {
 		setLocation(props.lixeira.properties.location)
 		setCapacity(props.lixeira.properties.capacity)
-		setLongitude(props.lixeira.geometry.coordinates[0])
 		setLatitude(props.lixeira.geometry.coordinates[1])
+		setLongitude(props.lixeira.geometry.coordinates[0])
 		setDescription(props.lixeira.properties.description)
 		setDistanceCover(props.lixeira.properties.distanceCover)
 		setDistanceBottom(props.lixeira.properties.distanceBottom)
 	}, [props.lixeira])
+
+    useEffect(() => {
+        if (props.savePressed) {
+            const lixeira : Lixeira = {
+                type : 'Feature',
+                geometry : {
+                    type : 'Point',
+                    coordinates : [longitude, latitude]
+                },
+                properties : {
+                    location : location,
+                    description : description,
+                    capacity : capacity,
+                    distanceBottom : distanceBottom,
+                    distanceCover : distanceCover
+                }
+            }
+            
+            const coiso = async () => {
+                const res = await fetch('/lixeira', {
+                    method : 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body : JSON.stringify(lixeira)
+                })
+                console.log(res)
+            }
+
+            coiso()
+
+            props.setSavePressed()
+        } 
+    }, [props.savePressed])
 	
 	return (
 		<div className={styles.container}>
