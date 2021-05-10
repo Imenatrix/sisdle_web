@@ -1,11 +1,13 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { MdDone } from 'react-icons/md'
 
 interface Props {
 	className : string,
     setSavePressed : () => void
 }
 
+// TODO: Modo de edição
 const EditButton : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
@@ -15,6 +17,7 @@ const EditButton : React.FC<Props> = (props) => {
 		<button onClick={props.setSavePressed} className={styles.btn + ' ' + props.className}>
 			{
 				// botão azul com icone de lapis para edição
+                <MdDone color='white' size={25}/>
 			}
 		</button>
 	)
@@ -25,6 +28,9 @@ export default EditButton
 
 const useStyles = createUseStyles({
 	btn : {
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center',
 		backgroundColor : '#2196F3',
 		border : 'none',
 		width : '3em',
