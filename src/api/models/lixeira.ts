@@ -16,6 +16,10 @@ const LixeiraSchema = new mongoose.Schema({
         coordinates: [Number]
     },
     properties: {
+        admin : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Admin'
+        },
         location: {
             type: String,
             required: true,
@@ -47,6 +51,7 @@ export interface Lixeira {
         coordinates : Array<number>
     },
     properties : {
+        admin : string
         location : string
         description : string
         capacity : number
