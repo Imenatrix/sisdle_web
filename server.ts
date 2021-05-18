@@ -1,9 +1,9 @@
 import express from 'express';
 import next from 'next';
-import admin from './src/api/controllers/Admin';
+import admin from './src/api/controllers/admin';
 import lixeira from './src/api/controllers/lixeira';
 import logCapacity from './src/api/controllers/logCapacity';
-import user from './src/api/controllers/User';
+import user from './src/api/controllers/user';
 
 
 const port = parseInt(process.env.PORT, 10) || 3000
