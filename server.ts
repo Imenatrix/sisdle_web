@@ -1,6 +1,10 @@
 import express from 'express';
 import next from 'next';
-import controller from './src/api/controllers/controller';
+import admin from './src/api/controllers/Admin';
+import lixeira from './src/api/controllers/lixeira';
+import logCapacity from './src/api/controllers/logCapacity';
+import user from './src/api/controllers/User';
+
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -10,7 +14,11 @@ const handle = nextapp.getRequestHandler()
 nextapp.prepare().then(() => {
     const app = express()
     app.use(express.json())
-    controller(app);
+
+    admin(app);
+    lixeira(app);
+    logCapacity(app);
+    user(app);
 
     app.all('*', (req, res) => {
         return handle(req, res)
