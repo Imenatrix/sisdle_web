@@ -48,7 +48,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                 }
             }
             
-            const coiso = async () => {
+            const checkLixeiraExistenceAndMakeAsyncRequest = async () => {
                 if (props.lixeira._id == undefined) {
                     const res = await fetch('/lixeira', {
                         method : 'POST',
@@ -71,7 +71,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                 }
             }
 
-            coiso()
+            checkLixeiraExistenceAndMakeAsyncRequest()
 
             props.setSavePressed()
         } 
