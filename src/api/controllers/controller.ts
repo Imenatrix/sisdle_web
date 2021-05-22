@@ -1,6 +1,7 @@
 import express from 'express';
 import Lixeira from '../models/lixeira';
 import LogCapacity from '../models/logCapacity';
+import Admin from '../models/admin';
 import { parseLixeiraToPlainObject } from '../library/functions';
 
 const router = express.Router();
@@ -61,7 +62,7 @@ router.patch('/lixeira', async (req, res) => {
 
 router.get('/lixeira', async (req, res) => {
     try {
-        const query = await (await Lixeira.find({}))
+        const query = await Lixeira.find({})
 
         return res.send({
             type: 'FeatureCollection',
@@ -89,7 +90,29 @@ router.post('/capacity', async (req, res) => {
 
 router.get('/capacity', async (req, res) => {
     try {
-        const query = await (await LogCapacity.find({}))
+        const query = await (LogCapacity.find({}))
+        return res.send(query);
+    }
+    catch (err) {
+        return res.status(500).send({ error: 'Query failed' });
+    }
+})
+
+//Admin
+
+router.post('/admin', async (req, res) => {
+    try {
+        const admin = await Admin.create(req.body);
+        return res.send({ admin });
+    } catch (err) {
+        return res.status(400).send({ error: 'Registration failed' });
+    }
+});
+
+router.get('/admin', async (req, res) => {
+    try {
+        const query = await Admin.find({})
+
         return res.send(query);
     }
     catch (err) {
