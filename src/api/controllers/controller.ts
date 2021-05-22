@@ -2,7 +2,6 @@ import express from 'express';
 import Lixeira from '../models/lixeira';
 import { parseLixeiraToPlainObject } from '../library/functions';
 
-
 const router = express.Router();
 
 router.post('/lixeira', async (req, res) => {
@@ -10,7 +9,12 @@ router.post('/lixeira', async (req, res) => {
         const lixeira = await Lixeira.create(req.body);
         const id = lixeira._id;
 
-        return res.send({ id });
+        return res.send({
+            id, ...JSON.parse(JSON.stringify(lixeira)),
+            _id: undefined,
+            __v: undefined,
+
+        });
     } catch (err) {
         return res.status(400).send({ error: 'Registration failed' });
     }
