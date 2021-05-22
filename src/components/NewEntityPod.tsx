@@ -2,6 +2,7 @@ import React from 'react'
 import { Lixeira } from 'src/api/models/lixeira'
 import { createUseStyles } from 'react-jss'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
+import { MdAdd } from 'react-icons/md'
 
 const NewEntityPod : React.FC = () => {
 
@@ -29,7 +30,7 @@ const NewEntityPod : React.FC = () => {
         <SelectedEntityContext.Consumer>
             {({selected, setSelected}) => (
                 <div className={styles.container} onClick={() => createNewLixeira(setSelected)}>
-                    Novo
+                    <MdAdd color="lightgray" size={30}/>
                 </div>
             )}
         </SelectedEntityContext.Consumer>
@@ -46,6 +47,8 @@ const useStyles = createUseStyles({
 		borderRadius : '0.85em',
 		border : ['solid', 'lightgray', 1],
 		margin : ['1em', 0],
-        padding : '1em'
+        padding : '0.65em',
+        justifyContent : 'center',
+        alignItems : 'center'
 	},
 })

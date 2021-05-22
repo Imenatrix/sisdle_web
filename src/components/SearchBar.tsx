@@ -1,5 +1,6 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { MdSearch } from 'react-icons/md'
 
 const SearchBar : React.FC = () => {
 
@@ -8,7 +9,9 @@ const SearchBar : React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<input type="text" className={styles.txtSearch}/>
-			<button className={styles.btnSearch}/>
+			<button className={styles.btnSearch}>
+                <MdSearch color='white' size={15}/>
+            </button>
 		</div>
 	)
 }
@@ -32,6 +35,9 @@ const useStyles = createUseStyles({
 		}
 	},
 	btnSearch : {
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center',
 		height : '1.7em',
 		border : 'none',
 		aspectRatio : 1,
