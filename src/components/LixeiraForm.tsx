@@ -33,6 +33,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
     useEffect(() => {
         if (props.savePressed) {
             const lixeira : Lixeira = {
+                _id : props.lixeira._id,
                 type : 'Feature',
                 geometry : {
                     type : 'Point',
@@ -47,19 +48,30 @@ const LixeiraForm : React.FC<Props> = (props) => {
                 }
             }
             
-            const coiso = async () => {
-                const res = await fetch('/lixeira', {
-                    method : 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body : JSON.stringify(lixeira)
-                })
-                console.log(res)
+            const checkLixeiraExistenceAndMakeAsyncRequest = async () => {
+                if (props.lixeira._id == undefined) {
+                    const res = await fetch('/lixeira', {
+                        method : 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body : JSON.stringify(lixeira)
+                    })
+                }
+                else {
+                    const res = await fetch('/lixeira', {
+                        method : 'PATCH',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body : JSON.stringify({id : lixeira._id, _id : undefined, ...lixeira})
+                    })
+                }
             }
 
-            coiso()
+            checkLixeiraExistenceAndMakeAsyncRequest()
 
             props.setSavePressed()
         } 
