@@ -2,6 +2,7 @@ import express from 'express';
 import Lixeira from '../models/lixeira';
 import LogCapacity from '../models/logCapacity';
 import Admin from '../models/admin';
+import User from '../models/user';
 import { parseLixeiraToPlainObject } from '../library/functions';
 
 const router = express.Router();
@@ -112,6 +113,28 @@ router.post('/admin', async (req, res) => {
 router.get('/admin', async (req, res) => {
     try {
         const query = await Admin.find({})
+
+        return res.send(query);
+    }
+    catch (err) {
+        return res.status(500).send({ error: 'Query failed' });
+    }
+})
+
+//Users
+
+router.post('/user', async (req, res) => {
+    try {
+        const user = await User.create(req.body);
+        return res.send({ user });
+    } catch (err) {
+        return res.status(400).send({ error: 'Registration failed' });
+    }
+});
+
+router.get('/user', async (req, res) => {
+    try {
+        const query = await User.find({})
 
         return res.send(query);
     }
