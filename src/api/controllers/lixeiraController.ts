@@ -67,4 +67,4 @@ router.patch('/', async (req, res) => {
     }
 });
 
-export default app => app.use('/lixeira', router);
+export default router;
