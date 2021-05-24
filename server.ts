@@ -1,9 +1,9 @@
 import express from 'express';
 import next from 'next';
-import admin from './src/api/controllers/admin';
-import lixeira from './src/api/controllers/lixeira';
-import logCapacity from './src/api/controllers/logCapacity';
-import user from './src/api/controllers/user';
+import admin from './src/api/controllers/adminController';
+import lixeira from './src/api/controllers/lixeiraController';
+import logCapacity from './src/api/controllers/logCapacityController';
+import user from './src/api/controllers/userController';
 
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -15,10 +15,10 @@ nextapp.prepare().then(() => {
     const app = express()
     app.use(express.json())
 
-    admin(app);
-    lixeira(app);
-    logCapacity(app);
-    user(app);
+    app.use('/admin', admin);
+    app.use('/lixeira', lixeira);
+    app.use('/capacity', logCapacity);
+    app.use('/user', user);
 
     app.all('*', (req, res) => {
         return handle(req, res)
