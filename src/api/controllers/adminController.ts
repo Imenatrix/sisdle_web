@@ -23,4 +23,4 @@ router.get('/', async (req, res) => {
     }
 })
 
-export default app => app.use('/admin', router);
+export default router;
