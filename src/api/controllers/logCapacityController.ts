@@ -26,4 +26,4 @@ router.get('/', async (req, res) => {
     }
 })
 
-export default app => app.use('/capacity', router);
+export default router;
