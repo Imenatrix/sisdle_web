@@ -12,6 +12,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
 
+	const [admin, setAdmin] = useState(props.lixeira.properties.admin)
 	const [location, setLocation] = useState(props.lixeira.properties.location)
 	const [capacity, setCapacity] = useState(props.lixeira.properties.capacity)
 	const [latitude, setLatitude] = useState(props.lixeira.geometry.coordinates[1])
@@ -40,6 +41,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                     coordinates : [longitude, latitude]
                 },
                 properties : {
+					admin : admin,
                     location : location,
                     description : description,
                     capacity : capacity,
