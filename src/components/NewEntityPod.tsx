@@ -16,6 +16,7 @@ const NewEntityPod : React.FC = () => {
                 coordinates : [null, null]
             },
             properties : {
+                admin : null,
                 location : null,
                 description : null,
                 capacity : null,
