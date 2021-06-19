@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx tsc || node -r dotenv/config ts-out/server.js",
+    "dev": "npx tsc && node -r dotenv/config ts-out/server.js",
     "build": "next build",
-    "start": "npx tsc || cross-env NODE_ENV=production node -r dotenv/config ts-out/server.js"
+    "start": "npx tsc && cross-env NODE_ENV=production node -r dotenv/config ts-out/server.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
