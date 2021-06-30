@@ -20,7 +20,7 @@ const App : React.FC<Props> = (props) => {
 
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
-            <div className={styles.container}>
+            <div className={styles.container} >
                 <Map/>
                 <div className={styles.foreground}>
                     <SearchCard lixeiras={lixeiras}/>
@@ -50,12 +50,16 @@ const useStyles = createUseStyles({
 	'container' : {
 		'display' : 'flex',
 		'width' : '100vw',
-		'height' : '100vh'
+		'height' : '100vh',
 	},
 	foreground : {
 		display : 'flex',
 		position : 'absolute',
 		width : '100%',
-		height : '100%'
+		height : '100%',
+		pointerEvents : 'none',
+		'& *' : {
+			pointerEvents : 'auto'
+		}		
 	}
 })
