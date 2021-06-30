@@ -24,7 +24,7 @@ const App : React.FC<Props> = (props) => {
                 <Map/>
                 <div className={styles.foreground}>
                     <SearchCard lixeiras={lixeiras}/>
-                    <EntityCard/>
+                    <EntityCard hidden={selectedEntity == undefined}/>
                 </div>
             </div>
         </SelectedEntityContext.Provider>

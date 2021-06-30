@@ -4,14 +4,18 @@ import { createUseStyles } from 'react-jss'
 import LixeiraForm from 'src/components/LixeiraForm'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
-const EntityCard : React.FC = () => {
+interface Props {
+	hidden? : boolean
+}
+
+const EntityCard : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
 
     const [savePressed, setSavePressed] = useState(false)
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container + (props.hidden ? ' ' + styles.hidden : '')}>
 			<div className={styles.header}>
 				<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
 			</div>
@@ -36,7 +40,12 @@ const useStyles = createUseStyles({
 		borderBottomRightRadius : '0.85em',
         padding : '1em',
         display : 'flex',
-        flexDirection : 'column'
+        flexDirection : 'column',
+		transform : 'translate(0)',
+		transition : ['transform', '0.7s', 'cubic-bezier(0.2, 1, 0.2, 1)'],
+	},
+	hidden : {
+		transform : 'translate(-100%)',
 	},
 	header : {
 		display : 'flex',
