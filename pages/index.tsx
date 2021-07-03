@@ -21,7 +21,7 @@ const App : React.FC<Props> = (props) => {
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
             <div className={styles.container} >
-                <Map/>
+                <Map lixeiras={lixeiras}/>
                 <div className={styles.foreground}>
                     <SearchCard lixeiras={lixeiras}/>
                     <EntityCard/>
