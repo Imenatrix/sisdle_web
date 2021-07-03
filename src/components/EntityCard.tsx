@@ -5,11 +5,7 @@ import LixeiraForm from 'src/components/LixeiraForm'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import MainCard from './MainCard'
 
-interface Props {
-	hidden? : boolean
-}
-
-const EntityCard : React.FC<Props> = (props) => {
+const EntityCard : React.FC = () => {
 
 	const styles = useStyles()
 
@@ -33,21 +29,6 @@ const EntityCard : React.FC<Props> = (props) => {
 export default EntityCard
 
 const useStyles = createUseStyles({
-	container : {
-		backgroundColor : 'white',
-		flex : 0.333,
-		margin : ['1em', 0],
-		borderTopRightRadius : '0.85em',
-		borderBottomRightRadius : '0.85em',
-        padding : '1em',
-        display : 'flex',
-        flexDirection : 'column',
-		transform : 'translate(0)',
-		transition : ['transform', '0.7s', 'cubic-bezier(0.2, 1, 0.2, 1)'],
-	},
-	hidden : {
-		transform : 'translate(-100%)',
-	},
 	header : {
 		display : 'flex',
 		flexDirection : 'column',
