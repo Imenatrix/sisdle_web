@@ -1,21 +1,41 @@
 import React, { useState } from 'react'
-import ReactMapGL from 'react-map-gl'
+import { useEffect } from 'react'
+import ReactMapGL, { FlyToInterpolator } from 'react-map-gl'
 import { Lixeira } from 'src/api/models/lixeira'
 import LixeiraMarker from 'src/components/LixeiraMarker'
 
 interface Props {
 	lixeiras : Array<Lixeira>
+	center? : Array<number>
 }
 
 const Map : React.FC<Props> = (props) => {
 
 	const lixeiras = props.lixeiras
+	const center = props.center || [0, 0]
 
 	const [viewport, setViewport] = useState({
-		latitude: 37.7577,
-		longitude: -122.4376,
+		longitude: center[0],
+		latitude: center[1],
 		zoom: 8
 	})
+
+	useEffect(() => {
+		if (center != undefined) {
+			const newViewport = {
+				longitude: center[0],
+				latitude: center[1],
+				zoom: 14,
+				transitionDuration: 1000,
+				transitionInterpolator: new FlyToInterpolator(),
+			}
+			setViewport(newViewport)
+		}
+	}, [props.center])
+
+	const markers = React.useMemo(() => lixeiras.map((lixeira) => (
+		<LixeiraMarker key={lixeira._id} lixeira={lixeira}/>
+	)), [props.lixeiras]);
 
 	return (
 		<ReactMapGL
@@ -25,9 +45,7 @@ const Map : React.FC<Props> = (props) => {
 			mapStyle="mapbox://styles/mapbox/streets-v11"
 			onViewportChange={(viewport) => setViewport(viewport)}
 			mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}>
-				{lixeiras.map((lixeira) => (
-					<LixeiraMarker key={lixeira._id} lixeira={lixeira}/>
-				))}
+				{markers}
 			</ReactMapGL>
 	)
 
