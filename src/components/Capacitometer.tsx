@@ -1,12 +1,16 @@
 import React from 'react'
-import { createUseStyles, Styles } from 'react-jss'
+import { createUseStyles } from 'react-jss'
 
-const Capacitometer : React.FC = () => {
+interface Props {
+	className? : string
+}
+
+const Capacitometer : React.FC<Props> = (props) => {
 
 	const styles = useStyles({capacity : 75})
 	
 	return (
-		<div className={styles.container}>
+		<div className={styles.container + ' ' + props.className}>
 			<div className={styles.empty}/>
 			<div className={styles.full}/>
 		</div>
@@ -20,8 +24,7 @@ export default Capacitometer
 const useStyles = createUseStyles<'container' | 'empty' | 'full', {capacity : number}>({
 	container : {
 		display : 'flex',
-		flexDirection : 'column',
-		flex : 0.1,
+		flexDirection : 'column'
 	},
 	empty : {
 		flex : props => 100 - props.capacity,
