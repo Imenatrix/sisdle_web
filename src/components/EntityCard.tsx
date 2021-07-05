@@ -3,6 +3,7 @@ import EditButton from 'src/components/EditButton'
 import { createUseStyles } from 'react-jss'
 import LixeiraForm from 'src/components/LixeiraForm'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
+import MainCard from './MainCard'
 
 const EntityCard : React.FC = () => {
 
@@ -11,7 +12,7 @@ const EntityCard : React.FC = () => {
     const [savePressed, setSavePressed] = useState(false)
 
 	return (
-		<div className={styles.container}>
+		<MainCard>
 			<div className={styles.header}>
 				<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
 			</div>
@@ -20,7 +21,7 @@ const EntityCard : React.FC = () => {
                     <LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
                 )}
             </SelectedEntityContext.Consumer>
-		</div>
+		</MainCard>
 	)
 
 }
@@ -28,16 +29,6 @@ const EntityCard : React.FC = () => {
 export default EntityCard
 
 const useStyles = createUseStyles({
-	container : {
-		backgroundColor : 'white',
-		flex : 0.333,
-		margin : ['1em', 0],
-		borderTopRightRadius : '0.85em',
-		borderBottomRightRadius : '0.85em',
-        padding : '1em',
-        display : 'flex',
-        flexDirection : 'column'
-	},
 	header : {
 		display : 'flex',
 		flexDirection : 'column',
