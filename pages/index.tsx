@@ -25,8 +25,12 @@ const App : React.FC<Props> = (props) => {
                 	<Map lixeiras={lixeiras} center={selectedEntity?.geometry.coordinates}/>
 				</div>
                 <div className={styles.foreground}>
-                    <SearchCard lixeiras={lixeiras}/>
-                    <EntityCard/>
+					<div className={styles.searchCardContainer}>
+                    	<SearchCard lixeiras={lixeiras}/>
+					</div>
+					<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
+                    	<EntityCard/>
+					</div>
                 </div>
             </div>
         </SelectedEntityContext.Provider>
@@ -69,5 +73,19 @@ const useStyles = createUseStyles({
 		width : '100%',
 		height : '100%',
 		transform : 'translate(calc(33.333% - 0.85em * 2))'
+	},
+	searchCardContainer : {
+		flex : 0.333,
+		display : 'flex'
+	},
+	entityCardContainer : {
+		flex : 0.333,
+		display : 'flex',
+		margin : ['1em', 0],
+		transform : 'translate(0)',
+		transition : ['transform', '0.7s', 'cubic-bezier(0.2, 1, 0.2, 1)']
+	},
+	hidden : {
+		transform : 'translate(-100%)',
 	}
 })
