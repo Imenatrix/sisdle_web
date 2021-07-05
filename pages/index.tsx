@@ -20,8 +20,10 @@ const App : React.FC<Props> = (props) => {
 
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
-            <div className={styles.container} >
-                <Map lixeiras={lixeiras} center={selectedEntity?.geometry.coordinates}/>
+            <div className={styles.container}>
+				<div className={styles.mapContainer}>
+                	<Map lixeiras={lixeiras} center={selectedEntity?.geometry.coordinates}/>
+				</div>
                 <div className={styles.foreground}>
                     <SearchCard lixeiras={lixeiras}/>
                     <EntityCard/>
@@ -47,10 +49,11 @@ const useStyles = createUseStyles({
 	'@global body' : {
 		margin : 0
 	},
-	'container' : {
-		'display' : 'flex',
-		'width' : '100vw',
-		'height' : '100vh',
+	container : {
+		display : 'flex',
+		width : '100vw',
+		height : '100vh',
+		overflow : 'hidden'
 	},
 	foreground : {
 		display : 'flex',
@@ -61,5 +64,10 @@ const useStyles = createUseStyles({
 		'& *' : {
 			pointerEvents : 'auto'
 		}		
+	},
+	mapContainer : {
+		width : '100%',
+		height : '100%',
+		transform : 'translate(calc(33.333% - 0.85em * 2))'
 	}
 })
