@@ -17,7 +17,7 @@ const EntityCard : React.FC = () => {
 				<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
 			</div>
             <SelectedEntityContext.Consumer>
-                {({selected, setSelected}) => selected != undefined && (
+                {({selected, setSelected}) => (
                     <LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
                 )}
             </SelectedEntityContext.Consumer>
