@@ -3,11 +3,14 @@ import { createUseStyles } from 'react-jss'
 
 interface Props {
 	className? : string
+	capacity : number
 }
 
 const Capacitometer : React.FC<Props> = (props) => {
 
-	const styles = useStyles({capacity : 75})
+	const capacity = props.capacity
+
+	const styles = useStyles({capacity : capacity})
 	
 	return (
 		<div className={styles.container + ' ' + props.className}>
