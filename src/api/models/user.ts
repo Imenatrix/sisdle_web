@@ -1,9 +1,19 @@
 import mongoose from '../database';
+import bcrypt from 'bcrypt';
+
+
+export interface User {
+    login: string;
+    password: string;
+    name: string;
+}
 
 const UserSchema = new mongoose.Schema({
     login: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        lowercase: true
     },
     password: {
         type: String,
@@ -11,9 +21,14 @@ const UserSchema = new mongoose.Schema({
     },
     admin: {
         type: mongoose.Schema.Types.ObjectId,
-        ref : 'Admin',
+        ref: 'Admin',
         required: true
     }
-});
+})
+    .pre<User>('save', async function (next) {
+        const hash = await bcrypt.hash(this.password, 10);
+        this.password = hash;
+        next();
+    });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);
