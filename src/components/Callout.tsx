@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRef } from 'react'
 import { createUseStyles } from 'react-jss'
 import { Popup } from 'react-map-gl'
 import { Lixeira } from 'src/api/models/lixeira'
@@ -17,18 +18,16 @@ const Callout : React.FC<Props> = (props) => {
     return (
         <Popup closeButton={false} offsetTop={-17} latitude={lixeira.geometry.coordinates[1]} longitude={lixeira.geometry.coordinates[0]}>
             <div className={styles.container}>
-                <div className={styles.content}>
-                    <p className={styles.txtLocation}>
-                        {lixeira.properties.location}
-                    </p>
-                    <hr/>
-                    <p className={styles.txtCapacity}>
-                        {lixeira.properties.capacity + '%'}
-                    </p>
-                    <p className={styles.txtDescription}>
-                        {lixeira.properties.description}
-                    </p>
-                </div>
+                <p className={styles.txtLocation}>
+                    {lixeira.properties.location}
+                </p>
+                <hr className={styles.hr}/>
+                <p className={styles.txtCapacity}>
+                    {lixeira.properties.capacity + '%'}
+                </p>
+                <p className={styles.txtDescription}>
+                    {lixeira.properties.description}
+                </p>
             </div>
         </Popup>
     )
@@ -36,15 +35,17 @@ const Callout : React.FC<Props> = (props) => {
 export default Callout
 
 const useStyles = createUseStyles({
+    hr : {
+        width : '100%'
+    },
     container : {
         display : 'flex',
-        flexDirection : 'row-reverse',
-        width : 175
-    },
-    content : {
+        justifyContent : 'center',
+        width : 175,
         borderWidth: 1,
         borderRadius: 3,
         backgroundColor: 'white',
+        flexDirection : 'column'
     },
     txtLocation : {
         textAlign : 'center',
