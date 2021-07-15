@@ -19,7 +19,7 @@ const LixeiraMarker : React.FC<Props> = (props) => {
 			<SelectedEntityContext.Consumer>
 			{({selected, setSelected}) => (
 				<div onClick={() => setSelected(lixeira)}>
-					<Capacitometer className={styles.capacitometer}/>
+					<Capacitometer capacity={lixeira.properties.capacity} className={styles.capacitometer}/>
 				</div>
 			)}
 			</SelectedEntityContext.Consumer>

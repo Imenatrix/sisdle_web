@@ -18,7 +18,7 @@ const LixeiraPod : React.FC<Props> = (props) => {
         <SelectedEntityContext.Consumer>
             {({selected, setSelected}) => (
                 <div className={styles.container} onClick={() => setSelected(lixeira)}>
-                    <Capacitometer className={styles.capacitometer}/>
+                    <Capacitometer capacity={lixeira.properties.capacity} className={styles.capacitometer}/>
                     <div className={styles.txtContainer}>
                         <div className={styles.txtLocation}>{lixeira.properties.location}</div>
                         <div className={styles.txtDescription}>{lixeira.properties.description}</div>
