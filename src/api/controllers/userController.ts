@@ -3,7 +3,7 @@ import User from '../models/user';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
 
     const { login, password, admin } = req.body;
     if (!login || !password || !admin) return res.status(400).send({ error: 'Dados Insuficientes' });
