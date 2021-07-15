@@ -15,7 +15,7 @@ const LixeiraMarker : React.FC<Props> = (props) => {
 	const styles = useStyles()
 
 	return (
-		<Marker longitude={lixeira.geometry.coordinates[0]} latitude={lixeira.geometry.coordinates[1]}>
+		<Marker offsetLeft={-15} offsetTop={-15} longitude={lixeira.geometry.coordinates[0]} latitude={lixeira.geometry.coordinates[1]}>
 			<SelectedEntityContext.Consumer>
 			{({selected, setSelected}) => (
 				<div onClick={() => setSelected(lixeira)}>
