@@ -4,6 +4,9 @@ import Admin from '../models/admin';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
+    const name = req.body;
+    if (!name) return res.status(400).send({ error: 'Dados Insuficientes' })
+
     try {
         const admin = await Admin.create(req.body);
         return res.send({ admin });
