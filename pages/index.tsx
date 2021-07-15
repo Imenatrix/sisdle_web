@@ -76,14 +76,20 @@ const useStyles = createUseStyles({
 	},
 	searchCardContainer : {
 		flex : 0.333,
-		display : 'flex'
+		display : 'flex',
+		'& > *' : {
+			flex : 1
+		}
 	},
 	entityCardContainer : {
 		flex : 0.333,
 		display : 'flex',
 		margin : ['1em', 0],
 		transform : 'translate(0)',
-		transition : ['transform', '0.7s', 'cubic-bezier(0.2, 1, 0.2, 1)']
+		transition : ['transform', '0.7s', 'cubic-bezier(0.2, 1, 0.2, 1)'],
+		'& > *' : {
+			flex : 1
+		}
 	},
 	hidden : {
 		transform : 'translate(-100%)',

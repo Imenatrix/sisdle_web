@@ -12,29 +12,44 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
 
-	const [admin, setAdmin] = useState(props.lixeira.properties.admin)
-	const [location, setLocation] = useState(props.lixeira.properties.location)
-	const [capacity, setCapacity] = useState(props.lixeira.properties.capacity)
-	const [latitude, setLatitude] = useState(props.lixeira.geometry.coordinates[1])
-	const [longitude, setLongitude] = useState(props.lixeira.geometry.coordinates[0])
-	const [description, setDescription] = useState(props.lixeira.properties.description)
-	const [distanceCover, setDistanceCover] = useState(props.lixeira.properties.distanceCover)
-	const [distanceBottom, setDistanceBottom] = useState(props.lixeira.properties.distanceBottom)
+	const lixeira = props.lixeira || {
+		_id : '',
+		properties : {
+			admin : '',
+			location : '',
+			capacity : 0,
+			description : '',
+			distanceCover : 0,
+			distanceBottom : 0
+		},
+		geometry : {
+			coordinates : [0, 0]
+		}
+	}
+
+	const [admin, setAdmin] = useState(lixeira.properties.admin)
+	const [location, setLocation] = useState(lixeira.properties.location)
+	const [capacity, setCapacity] = useState(lixeira.properties.capacity)
+	const [latitude, setLatitude] = useState(lixeira.geometry.coordinates[1])
+	const [longitude, setLongitude] = useState(lixeira.geometry.coordinates[0])
+	const [description, setDescription] = useState(lixeira.properties.description)
+	const [distanceCover, setDistanceCover] = useState(lixeira.properties.distanceCover)
+	const [distanceBottom, setDistanceBottom] = useState(lixeira.properties.distanceBottom)
 
 	useEffect(() => {
-		setLocation(props.lixeira.properties.location)
-		setCapacity(props.lixeira.properties.capacity)
-		setLatitude(props.lixeira.geometry.coordinates[1])
-		setLongitude(props.lixeira.geometry.coordinates[0])
-		setDescription(props.lixeira.properties.description)
-		setDistanceCover(props.lixeira.properties.distanceCover)
-		setDistanceBottom(props.lixeira.properties.distanceBottom)
+		setLocation(lixeira.properties.location)
+		setCapacity(lixeira.properties.capacity)
+		setLatitude(lixeira.geometry.coordinates[1])
+		setLongitude(lixeira.geometry.coordinates[0])
+		setDescription(lixeira.properties.description)
+		setDistanceCover(lixeira.properties.distanceCover)
+		setDistanceBottom(lixeira.properties.distanceBottom)
 	}, [props.lixeira])
 
     useEffect(() => {
         if (props.savePressed) {
-            const lixeira : Lixeira = {
-                _id : props.lixeira._id,
+            const newLixeira : Lixeira = {
+                _id : lixeira._id,
                 type : 'Feature',
                 geometry : {
                     type : 'Point',
@@ -51,14 +66,14 @@ const LixeiraForm : React.FC<Props> = (props) => {
             }
             
             const checkLixeiraExistenceAndMakeAsyncRequest = async () => {
-                if (props.lixeira._id == undefined) {
+                if (newLixeira._id == undefined) {
                     const res = await fetch('/lixeira', {
                         method : 'POST',
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body : JSON.stringify(lixeira)
+                        body : JSON.stringify(newLixeira)
                     })
                 }
                 else {
@@ -68,7 +83,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body : JSON.stringify({id : lixeira._id, _id : undefined, ...lixeira})
+                        body : JSON.stringify({id : newLixeira._id, _id : undefined, ...newLixeira})
                     })
                 }
             }

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import ReactMapGL, { FlyToInterpolator } from 'react-map-gl'
 import { Lixeira } from 'src/api/models/lixeira'
 import LixeiraMarker from 'src/components/LixeiraMarker'
+import SelectedEntityContext from './contexts/SelectedEntityContext'
 
 interface Props {
 	lixeiras : Array<Lixeira>
@@ -12,11 +13,11 @@ interface Props {
 const Map : React.FC<Props> = (props) => {
 
 	const lixeiras = props.lixeiras
-	const center = props.center || [0, 0]
+	const center = props.center
 
 	const [viewport, setViewport] = useState({
-		longitude: center[0],
-		latitude: center[1],
+		longitude: center ? center[0] : 0,
+		latitude: center ? center[1] : 0,
 		zoom: 8
 	})
 
@@ -38,15 +39,20 @@ const Map : React.FC<Props> = (props) => {
 	)), [props.lixeiras]);
 
 	return (
-		<ReactMapGL
-			{...viewport}
-			width="100%"
-			height="100%"
-			mapStyle="mapbox://styles/mapbox/streets-v11"
-			onViewportChange={(viewport) => setViewport(viewport)}
-			mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}>
-				{markers}
-			</ReactMapGL>
+		<SelectedEntityContext.Consumer>
+			{({selected, setSelected}) => (
+				<ReactMapGL
+					{...viewport}
+					width="100%"
+					height="100%"
+					onClick={() => setSelected(undefined)}
+					mapStyle="mapbox://styles/mapbox/streets-v11"
+					onViewportChange={(viewport) => setViewport(viewport)}
+					mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}>
+						{markers}
+					</ReactMapGL>
+			)}
+		</SelectedEntityContext.Consumer>
 	)
 
 }
