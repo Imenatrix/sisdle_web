@@ -7,18 +7,22 @@ import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext
 
 interface Props {
 	lixeira : Lixeira
+	onMouseEnter? : (lixeira : Lixeira) => void
+	onMouseLeave? : (lixeira : Lixeira) => void
 }
 
 const LixeiraMarker : React.FC<Props> = (props) => {
 
 	const lixeira = props.lixeira
 	const styles = useStyles()
+	const onMouseEnter = props.onMouseEnter
+	const onMouseLeave = props.onMouseLeave
 
 	return (
 		<Marker offsetLeft={-15} offsetTop={-15} longitude={lixeira.geometry.coordinates[0]} latitude={lixeira.geometry.coordinates[1]}>
 			<SelectedEntityContext.Consumer>
 			{({selected, setSelected}) => (
-				<div onClick={() => setSelected(lixeira)}>
+				<div onMouseEnter={() => onMouseEnter(lixeira)} onMouseLeave={() => onMouseLeave(lixeira)} onClick={() => setSelected(lixeira)}>
 					<Capacitometer capacity={lixeira.properties.capacity} className={styles.capacitometer}/>
 				</div>
 			)}
