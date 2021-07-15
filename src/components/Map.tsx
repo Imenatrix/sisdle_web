@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useRef } from 'react'
 import { useEffect } from 'react'
-import ReactMapGL, { FlyToInterpolator } from 'react-map-gl'
+import ReactMapGL, { FlyToInterpolator, Popup } from 'react-map-gl'
 import { Lixeira } from 'src/api/models/lixeira'
 import LixeiraMarker from 'src/components/LixeiraMarker'
+import Callout from './Callout'
 import SelectedEntityContext from './contexts/SelectedEntityContext'
 
 interface Props {
@@ -14,6 +16,10 @@ const Map : React.FC<Props> = (props) => {
 
 	const lixeiras = props.lixeiras
 	const center = props.center
+
+	const map = useRef(null)
+
+	const [showCallout, setShowCallout] = useState({})
 
 	const [viewport, setViewport] = useState({
 		longitude: center ? center[0] : 0,
@@ -34,14 +40,35 @@ const Map : React.FC<Props> = (props) => {
 		}
 	}, [props.center])
 
+	useEffect(() => {
+		console.log(showCallout)
+	})
+
+	function toggleCalloutTrue(lixeira : Lixeira) {
+		setShowCallout({
+			[lixeira._id] : true
+		})
+	}
+
+	function toggleCalloutFalse(lixeira : Lixeira) {
+		setShowCallout({
+			[lixeira._id] : false
+		})
+	}
+
 	const markers = React.useMemo(() => lixeiras.map((lixeira) => (
-		<LixeiraMarker key={lixeira._id} lixeira={lixeira}/>
+		<LixeiraMarker onMouseEnter={toggleCalloutTrue} onMouseLeave={toggleCalloutFalse} key={lixeira._id} lixeira={lixeira}/>
 	)), [props.lixeiras]);
+
+	const callouts = React.useMemo(() => lixeiras.map((lixeira) => (
+		showCallout[lixeira._id] && <Callout key={lixeira._id} lixeira={lixeira}/>
+	)), [props.lixeiras, showCallout]);
 
 	return (
 		<SelectedEntityContext.Consumer>
 			{({selected, setSelected}) => (
 				<ReactMapGL
+					ref={map}
 					{...viewport}
 					width="100%"
 					height="100%"
@@ -50,6 +77,7 @@ const Map : React.FC<Props> = (props) => {
 					onViewportChange={(viewport) => setViewport(viewport)}
 					mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}>
 						{markers}
+						{callouts}
 					</ReactMapGL>
 			)}
 		</SelectedEntityContext.Consumer>
