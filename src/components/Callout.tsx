@@ -53,14 +53,12 @@ const useStyles = createUseStyles({
         fontSize : 20
     },
     txtCapacity : {
-        color: 'black',
         textAlign: 'center',
         textAlignVertical : 'center',
         flex : 2
     },
     txtDescription : {
         textAlign : 'center',
-        color : 'lightgray',
         marginBottom : 5
     }
 })
