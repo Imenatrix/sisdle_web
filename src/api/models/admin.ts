@@ -1,9 +1,10 @@
 import mongoose from '../database';
 
 const AdminSchema = new mongoose.Schema({
-     name: {
+    name: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     }
 });
 
