@@ -1,10 +1,21 @@
 import mongoose from '../database';
 
+export interface Admin {
+    idName: string;
+    displayName: string;
+}
+
 const AdminSchema = new mongoose.Schema({
-     name: {
+    idName: {
         type: String,
-        required: true
+        trim: true
+    },
+    displayName: {
+        type: String,
+        trim: true
     }
-});
+}).pre<Admin>('validate', async function (next) {
+    this.idName = this.displayName.toLowerCase();
+})
 
 export default mongoose.models.Admin || mongoose.model('Admin', AdminSchema);
