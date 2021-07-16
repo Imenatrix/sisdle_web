@@ -35,11 +35,9 @@ router.post('/login', async (req, res) => {
 
         //Compara a senha enviada com a do banco de dados
         const result = await bcrypt.compare(password, user.password);
-        if (result) {
-            return res.send(user);
-        } else {
-            return res.send({ error: 'Senha incorreta' });
-        }
+        if (!result) return res.send({ error: 'Senha incorreta' });
+
+        return res.send(user);
 
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao buscar usuário' });
