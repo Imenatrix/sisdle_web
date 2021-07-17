@@ -7,9 +7,7 @@ const MainCard : React.FC = (props) => {
 
 	return (
 	   <div className={styles.container}>
-			<div className={styles.content}>
-				{props.children}
-			</div>
+			{props.children}
 	   </div> 
 	)
 
@@ -25,11 +23,6 @@ const useStyles = createUseStyles({
 		zIndex : 1,
 		borderTopRightRadius : '0.85em',
 		borderBottomRightRadius : '0.85em',
+		overflow : 'hidden'
 	},
-	content  : {
-		flex : 1,
-		padding : '1em',
-        display : 'flex',
-        flexDirection : 'column'
-	}
 })
