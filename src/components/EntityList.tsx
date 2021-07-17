@@ -30,6 +30,12 @@ const useStyles = createUseStyles({
     container : {
         overflow : 'scroll',
         flex : 1,
-        overflowX : 'hidden'
-    }
+        overflowX : 'hidden',
+        '&::-webkit-scrollbar-thumb' : {
+            background : 'lightgray'
+        },
+        '&::-webkit-scrollbar' : {
+            width : 10
+        },
+    },
 })
