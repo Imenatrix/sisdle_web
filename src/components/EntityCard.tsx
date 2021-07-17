@@ -13,14 +13,16 @@ const EntityCard : React.FC = () => {
 
 	return (
 		<MainCard>
-			<div className={styles.header}>
-				<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
+			<div className={styles.content}>
+				<div className={styles.header}>
+					<EditButton setSavePressed={() => setSavePressed(true)} className={styles.btnEdit}/>
+				</div>
+				<SelectedEntityContext.Consumer>
+					{({selected, setSelected}) => (
+						<LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
+					)}
+				</SelectedEntityContext.Consumer>
 			</div>
-            <SelectedEntityContext.Consumer>
-                {({selected, setSelected}) => (
-                    <LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
-                )}
-            </SelectedEntityContext.Consumer>
 		</MainCard>
 	)
 
@@ -29,6 +31,12 @@ const EntityCard : React.FC = () => {
 export default EntityCard
 
 const useStyles = createUseStyles({
+	content : {
+		flex : 1,
+		display : 'flex',
+		flexDirection : 'column',
+		padding : '1em'
+	},
 	header : {
 		display : 'flex',
 		flexDirection : 'column',
