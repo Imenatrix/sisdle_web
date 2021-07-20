@@ -6,7 +6,8 @@ const auth = (req, res, next) => {
     if (!token_header) return res.send({ error: 'Token ausente' });
 
     try {
-        jwt.verify(token_header, 'coxinha');
+
+        res.locals.auth_data = jwt.verify(token_header, 'coxinha');
         return next();
     } catch (err) {
         return res.send({ error: 'Token inválido' })
