@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
     if (!login || !password || !admin) return res.status(400).send({ error: 'Dados Insuficientes' });
 
     try {
-        //Verifica se ja existe um admin com o mesmo login
+        //Verifica se ja existe um login com o mesmo login
         if (await User.findOne({ login })) return res.send({ error: 'Usuário já registado' });
 
         const user = await User.create(req.body);
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
         //Compara a senha enviada com a do banco de dados
         const result = await bcrypt.compare(password, user.password);
         if (!result) return res.send({ error: 'Senha incorreta' });
-
+        user.password = undefined;
         return res.send({ user, token: createUserToken(user.login) });
 
     } catch (err) {
