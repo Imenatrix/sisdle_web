@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../models/user';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import auth from '../middlewares/auth';
 
 const router = express.Router();
 
@@ -51,10 +52,10 @@ router.post('/login', async (req, res) => {
 
 });
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
         const query = await User.find({})
-
+        console.log(res.locals.auth_data);
         return res.send(query);
     }
     catch (err) {
