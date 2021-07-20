@@ -1,15 +1,10 @@
 import express from 'express';
 import User from '../models/user';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import auth from '../middlewares/auth';
+import { createUserToken } from '../library/functions';
 
 const router = express.Router();
-
-//Função Auxiliar
-const createUserToken = (login) => {
-    return jwt.sign({ id: login }, 'coxinha', { expiresIn: '1d' });
-}
 
 router.post('/register', async (req, res) => {
 
