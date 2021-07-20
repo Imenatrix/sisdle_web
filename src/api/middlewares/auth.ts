@@ -7,7 +7,7 @@ const auth = (req, res, next) => {
 
     try {
 
-        res.locals.auth_data = jwt.verify(token_header, 'coxinha');
+        res.locals.auth_data = jwt.verify(token_header, process.env.JWT_SECRETKEY);
         return next();
     } catch (err) {
         return res.send({ error: 'Token inválido' })
