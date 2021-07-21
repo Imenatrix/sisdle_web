@@ -1,6 +1,6 @@
 import express from 'express';
 import next from 'next';
-import { coloredMessage } from './src/api/library/functions';
+import { coloredMessage, colorCodes } from './src/api/library/functions';
 import admin from './src/api/controllers/adminController';
 import lixeira from './src/api/controllers/lixeiraController';
 import logCapacity from './src/api/controllers/logCapacityController';
@@ -27,6 +27,6 @@ nextapp.prepare().then(() => {
 
     app.listen(port, (err) => {
         if (err) throw err
-        console.log(coloredMessage(`> Servidor iniciado em: http://localhost:${port}`, 32));
+        console.log(coloredMessage(`> Servidor iniciado em: http://localhost:${port}`, colorCodes.Green));
     })
 })
