@@ -1,6 +1,4 @@
 import React from 'react'
-import Tabs from 'src/components/Tabs'
-import SearchBar from 'src/components/SearchBar'
 import EntityList from 'src/components/EntityList'
 import { createUseStyles } from 'react-jss'
 import { Lixeira } from 'src/api/models/lixeira'
@@ -20,7 +18,6 @@ const SearchCard : React.FC<Props> = (props) => {
 	return (
 		<MainCard>
 			<div className={styles.content}>
-				<Tabs/>
 				<SearchCardHeader/>
 				<EntityList lixeiras={lixeiras}/>
 			</div>
