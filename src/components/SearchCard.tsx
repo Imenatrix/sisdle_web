@@ -23,7 +23,7 @@ const tabs : Tabs = {
 
 const SearchCard : React.FC<Props> = (props) => {
 
-	const [selectedTab, setSelectedTab] = useState<keyof Tabs>(tabs.lixeiras)
+	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
 	const styles = useStyles()
 
