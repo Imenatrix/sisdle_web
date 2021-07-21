@@ -3,13 +3,19 @@ import { createUseStyles } from 'react-jss'
 import SearchBar from './SearchBar'
 import Tabs from './Tabs'
 
-const SearchCardHeader : React.FC = () => {
+interface Props {
+    tabs : {}
+}
+
+const SearchCardHeader : React.FC<Props> = (props) => {
 
     const styles = useStyles()
 
+    const tabs = props.tabs
+
     return (
         <div className={styles.container}>
-            <Tabs/>
+            <Tabs tabs={tabs}/>
             <div className={styles.searchBarContainer}>
                 <SearchBar/>
             </div>

@@ -1,15 +1,21 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-const Tabs : React.FC = () => {
+interface Props {
+	tabs : {}
+}
+
+const Tabs : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+	
+	const tabs = props.tabs
 
 	return (
 		<nav className={styles.container}>
-			<div className={styles.coiso + ' ' +  styles.selected}>Lixeiras</div>
-			<div className={styles.coiso}>Usuarios</div>
-			<div className={styles.coiso}>Rotas</div>
+			{Object.keys(tabs).map(key => (
+				<div key={key} className={styles.coiso}>{tabs[key]}</div>
+			))}
 			<div className={styles.filler}></div>
 		</nav>
 	)
