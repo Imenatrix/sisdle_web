@@ -1,13 +1,15 @@
 import jwt = require('jsonwebtoken');
 
 const auth = (req, res, next) => {
-    const token_header = req.headers.auth;
+    const bearerHeader = req.headers['authorization'];
 
-    if (!token_header) return res.send({ error: 'Token ausente' });
+    if (!bearerHeader) return res.send({ error: 'Token ausente' });
+
+    const bearer = bearerHeader.split(' ');
+    const bearerToken = bearer[1];
 
     try {
-
-        res.locals.auth_data = jwt.verify(token_header, process.env.JWT_SECRETKEY);
+        res.locals.auth_data = jwt.verify(bearerToken, process.env.JWT_SECRETKEY);
         return next();
     } catch (err) {
         return res.send({ error: 'Token inválido' })
