@@ -9,15 +9,16 @@ export function parseLixeiraToPlainObject(query) {
     return lixeiras
 }
 
-export function coloredMessage(msg, colorCode) {
+export enum colorCodes {
+    Green = 32,
+    Red = 31,
+    Gray = 90,
+}
 
-    /*  
-    Color Codes:
-    Green: 32
-    Red: 31
-    */
+export function coloredMessage(msg, color: colorCodes) {
 
-    return '\u001b[' + colorCode + 'm' + msg + '\u001b[0m'
+
+    return '\u001b[' + color + 'm' + msg + '\u001b[0m'
 }
 
 
