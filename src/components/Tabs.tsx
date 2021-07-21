@@ -3,6 +3,8 @@ import { createUseStyles } from 'react-jss'
 
 interface Props {
 	tabs : {}
+	onSelect : (value : any) => void
+	value : any
 }
 
 const Tabs : React.FC<Props> = (props) => {
@@ -10,11 +12,15 @@ const Tabs : React.FC<Props> = (props) => {
 	const styles = useStyles()
 	
 	const tabs = props.tabs
+	const value = props.value
+	const onSelect = props.onSelect
 
 	return (
 		<nav className={styles.container}>
 			{Object.keys(tabs).map(key => (
-				<div key={key} className={styles.coiso}>{tabs[key]}</div>
+				<div key={key} onClick={() => onSelect(key)} className={styles.coiso + (value === key ? (' ' + styles.selected) : '')}>
+					{tabs[key]}
+				</div>
 			))}
 			<div className={styles.filler}></div>
 		</nav>

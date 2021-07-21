@@ -5,6 +5,8 @@ import Tabs from './Tabs'
 
 interface Props {
     tabs : {}
+    onTabsSelect : (value : any) => void
+    selectedTab : any
 }
 
 const SearchCardHeader : React.FC<Props> = (props) => {
@@ -12,10 +14,12 @@ const SearchCardHeader : React.FC<Props> = (props) => {
     const styles = useStyles()
 
     const tabs = props.tabs
+    const selectedTab = props.selectedTab
+    const onTabsSelect = props.onTabsSelect
 
     return (
         <div className={styles.container}>
-            <Tabs tabs={tabs}/>
+            <Tabs value={selectedTab} onSelect={onTabsSelect} tabs={tabs}/>
             <div className={styles.searchBarContainer}>
                 <SearchBar/>
             </div>

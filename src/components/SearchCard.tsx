@@ -32,7 +32,7 @@ const SearchCard : React.FC<Props> = (props) => {
 	return (
 		<MainCard>
 			<div className={styles.content}>
-				<SearchCardHeader tabs={tabs}/>
+				<SearchCardHeader selectedTab={selectedTab} onTabsSelect={setSelectedTab} tabs={tabs}/>
 				<EntityList lixeiras={lixeiras}/>
 			</div>
 		</MainCard>
