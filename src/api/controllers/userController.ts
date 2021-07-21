@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 
         const user = await User.create(req.body);
         user.password = undefined;
-        return res.cookie('auth_token', createUserToken(user.login)).send({ user });
+        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).send({ user });
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao criar usuário' });
     }
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
         if (!result) return res.send({ error: 'Senha incorreta' });
         user.password = undefined;
 
-        return res.cookie('auth_token', createUserToken(user.login)).send({ user });
+        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).send({ user });
 
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao buscar usuário' });
