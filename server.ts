@@ -5,6 +5,7 @@ import admin from './src/api/controllers/adminController';
 import lixeira from './src/api/controllers/lixeiraController';
 import logCapacity from './src/api/controllers/logCapacityController';
 import user from './src/api/controllers/userController';
+import cookieParser from 'cookie-parser';
 
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -15,6 +16,7 @@ const handle = nextapp.getRequestHandler()
 nextapp.prepare().then(() => {
     const app = express()
     app.use(express.json())
+    app.use(cookieParser())
 
     app.use('/admin', admin);
     app.use('/lixeira', lixeira);
