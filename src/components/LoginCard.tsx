@@ -5,7 +5,7 @@ const LoginCard : React.FC = () => {
 	return (
 		<MainCard>
 
-			<form action="/login" method="post">
+			<form action="/user/login" method="post">
 				<input type="text" name="login" placeholder="Login"/> <br/>
 				<input type="password" name="password" placeholder="Senha"/> <br/>
 				<button type="submit">Entrar</button>
