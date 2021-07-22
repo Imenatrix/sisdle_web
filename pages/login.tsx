@@ -9,7 +9,7 @@ const Login : React.FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<Map/>
+			<Map lixeiras={[]}/>
 			<div className={styles.foreground}>
 				<LoginCard/>
 			</div>

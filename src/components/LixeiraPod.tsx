@@ -18,7 +18,7 @@ const LixeiraPod : React.FC<Props> = (props) => {
         <SelectedEntityContext.Consumer>
             {({selected, setSelected}) => (
                 <div className={styles.container} onClick={() => setSelected(lixeira)}>
-                    <Capacitometer/>
+                    <Capacitometer capacity={lixeira.properties.capacity} className={styles.capacitometer}/>
                     <div className={styles.txtContainer}>
                         <div className={styles.txtLocation}>{lixeira.properties.location}</div>
                         <div className={styles.txtDescription}>{lixeira.properties.description}</div>
@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
 		display : 'flex',
 		borderRadius : '0.85em',
 		border : ['solid', 'lightgray', 1],
-		margin : ['1em', 0]
+		margin : ['1em', '0.5em']
 	},
 	txtContainer : {
 		flex : 1,
@@ -51,5 +51,8 @@ const useStyles = createUseStyles({
     txtDescription : {
         marginTop : '0.5em',
         fontSize : 10
-    }
+    },
+	capacitometer : {
+		flex : 0.1
+	}
 })

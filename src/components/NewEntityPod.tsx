@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 		display : 'flex',
 		borderRadius : '0.85em',
 		border : ['solid', 'lightgray', 1],
-		margin : ['1em', 0],
+		margin : ['1em', '0.5em'],
         padding : '0.65em',
         justifyContent : 'center',
         alignItems : 'center'
