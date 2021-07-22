@@ -1,6 +1,4 @@
-import React from 'react'
-import Tabs from 'src/components/Tabs'
-import SearchBar from 'src/components/SearchBar'
+import React, { useState } from 'react'
 import EntityList from 'src/components/EntityList'
 import { createUseStyles } from 'react-jss'
 import { Lixeira } from 'src/api/models/lixeira'
@@ -11,7 +9,21 @@ interface Props {
     lixeiras : Array<Lixeira>
 }
 
+export interface Tabs {
+	lixeiras,
+	users,
+	routes
+}
+
+const tabs : Tabs = {
+	lixeiras : 'Lixeiras',
+	users : 'Usuarios',
+	routes  : 'Rotas'
+}
+
 const SearchCard : React.FC<Props> = (props) => {
+
+	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
 	const styles = useStyles()
 
@@ -20,8 +32,7 @@ const SearchCard : React.FC<Props> = (props) => {
 	return (
 		<MainCard>
 			<div className={styles.content}>
-				<Tabs/>
-				<SearchCardHeader/>
+				<SearchCardHeader selectedTab={selectedTab} onTabsSelect={setSelectedTab} tabs={tabs}/>
 				<EntityList lixeiras={lixeiras}/>
 			</div>
 		</MainCard>
