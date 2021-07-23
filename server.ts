@@ -8,7 +8,6 @@ import user from './src/api/controllers/userController';
 import cookieParser from 'cookie-parser';
 import authOnly from './src/api/middlewares/authOnly';
 
-
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const nextapp = next({ dev })
@@ -17,7 +16,7 @@ const handle = nextapp.getRequestHandler()
 nextapp.prepare().then(() => {
     const app = express()
     app.use(express.json())
-    app.use(express.urlencoded({extended : false}))
+    app.use(express.urlencoded({ extended: false }))
     app.use(cookieParser())
 
     app.use('/admin', admin);
@@ -26,6 +25,10 @@ nextapp.prepare().then(() => {
     app.use('/user', user);
 
     app.all('*', authOnly(['/']), handle)
+
+    app.use(function (err, req, res, next) {
+        if (err.name === 'UnauthorizedError') res.status(401).cookie('from', req.originalUrl).redirect('/login');
+    })
 
     app.listen(port, (err) => {
         if (err) throw err
