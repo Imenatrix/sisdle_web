@@ -40,7 +40,10 @@ router.post('/login', async (req, res) => {
         if (!result) return res.send({ error: 'Senha incorreta' });
         user.password = undefined;
 
-        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).send({ user });
+        const from = req.cookies['from'];
+        res.clearCookie('from');
+
+        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).redirect(from || '/');
 
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao buscar usuário' });
@@ -51,7 +54,6 @@ router.post('/login', async (req, res) => {
 router.get('/', auth, async (req, res) => {
     try {
         const query = await User.find({})
-        console.log(res.locals.auth_data);
         return res.send(query);
     }
     catch (err) {

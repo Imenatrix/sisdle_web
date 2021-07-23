@@ -18,6 +18,7 @@ export default MainCard
 const useStyles = createUseStyles({
 	container : {
 		display : 'flex',
+		flex : 0.333,
 		backgroundColor : 'white',
 		boxShadow : [1, 0, 7, 'rgba(0, 0, 0, 0.3)'],
 		zIndex : 1,
