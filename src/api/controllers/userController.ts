@@ -3,6 +3,7 @@ import User from '../models/user';
 import bcrypt from 'bcrypt';
 import auth from '../middlewares/auth';
 import { createUserToken } from '../library/functions';
+import { getCookieParser } from 'next/dist/next-server/server/api-utils';
 
 const router = express.Router();
 
@@ -40,7 +41,10 @@ router.post('/login', async (req, res) => {
         if (!result) return res.send({ error: 'Senha incorreta' });
         user.password = undefined;
 
-        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).redirect('/');
+        const from = req.cookies['from'];
+        res.clearCookie('from');
+
+        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).redirect(from || '/');
 
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao buscar usuário' });
