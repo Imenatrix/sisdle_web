@@ -3,7 +3,6 @@ import User from '../models/user';
 import bcrypt from 'bcrypt';
 import auth from '../middlewares/auth';
 import { createUserToken } from '../library/functions';
-import { getCookieParser } from 'next/dist/next-server/server/api-utils';
 
 const router = express.Router();
 
