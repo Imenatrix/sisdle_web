@@ -36,6 +36,11 @@ const App : React.FC<Props> = (props) => {
     const [selectedEntity, setSelectedEntity] = useState<Lixeira | User>()
 	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
+	function onTabSelected(tab : keyof Tabs) {
+		setSelectedTab(tab)
+		setSelectedEntity(undefined)
+	}
+
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
             <div className={styles.container}>
@@ -44,10 +49,10 @@ const App : React.FC<Props> = (props) => {
 				</div>
                 <div className={styles.foreground}>
 					<div className={styles.searchCardContainer}>
-                    	<SearchCard selectedTab={selectedTab} setSelectedTab={setSelectedTab} tabs={tabs} users={users} lixeiras={lixeiras}/>
+                    	<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
 					</div>
 					<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
-                    	<EntityCard/>
+                    	<EntityCard selectedTab={selectedTab}/>
 					</div>
                 </div>
             </div>

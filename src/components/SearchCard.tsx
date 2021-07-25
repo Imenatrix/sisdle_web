@@ -31,10 +31,10 @@ const SearchCard : React.FC<Props> = (props) => {
 			<div className={styles.content}>
 				<SearchCardHeader selectedTab={selectedTab} onTabsSelect={setSelectedTab} tabs={tabs}/>
 				{selectedTab == 'lixeiras' &&
-					<EntityList lixeiras={lixeiras}/>
+					<EntityList selectedTab={selectedTab} lixeiras={lixeiras}/>
 				}
 				{selectedTab == 'users' &&
-					<UserList users={users}/>
+					<UserList selectedTab={selectedTab} users={users}/>
 				}
 			</div>
 		</MainCard>

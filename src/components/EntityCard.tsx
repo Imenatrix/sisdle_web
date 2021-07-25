@@ -5,10 +5,19 @@ import LixeiraForm from 'src/components/LixeiraForm'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import MainCard from './MainCard'
 import Lixeira from 'src/shared/Lixeira'
+import { Tabs } from 'pages'
+import UserForm from 'src/components/UserForm'
+import User from 'src/shared/User'
 
-const EntityCard : React.FC = () => {
+interface Props {
+	selectedTab : keyof Tabs
+}
+
+const EntityCard : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+
+	const selectedTab = props.selectedTab
 
     const [savePressed, setSavePressed] = useState(false)
 
@@ -20,7 +29,10 @@ const EntityCard : React.FC = () => {
 				</div>
 				<SelectedEntityContext.Consumer>
 					{({selected, setSelected}) => (
-						<LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected instanceof Lixeira && selected}/>
+						selectedTab == 'lixeiras' ?
+							<LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={(selected as Lixeira)}/>
+						: selectedTab == 'users' &&
+							<UserForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} user={(selected as User)}/>
 					)}
 				</SelectedEntityContext.Consumer>
 			</div>
