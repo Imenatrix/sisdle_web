@@ -13,13 +13,6 @@ interface Props {
 	users : Array<User>
 }
 
-class LixeiraClass implements Lixeira {
-	_id?: string
-	type: 'Feature'
-	geometry: { type: 'Point'; coordinates: number[] }
-	properties: { admin: string; location: string; description: string; capacity: number; distanceCover: number; distanceBottom: number }
-}
-
 const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
@@ -32,7 +25,7 @@ const App : React.FC<Props> = (props) => {
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
             <div className={styles.container}>
 				<div className={styles.mapContainer}>
-                	<Map lixeiras={lixeiras} center={(selectedEntity instanceof LixeiraClass) && selectedEntity?.geometry.coordinates}/>
+                	<Map lixeiras={lixeiras} center={(selectedEntity instanceof Lixeira) && selectedEntity?.geometry.coordinates}/>
 				</div>
                 <div className={styles.foreground}>
 					<div className={styles.searchCardContainer}>
