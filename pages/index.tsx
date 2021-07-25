@@ -15,6 +15,18 @@ interface Props {
 	users : Array<User>
 }
 
+export interface Tabs {
+	lixeiras,
+	users,
+	routes
+}
+
+const tabs : Tabs = {
+	lixeiras : 'Lixeiras',
+	users : 'Usuarios',
+	routes  : 'Rotas'
+}
+
 const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
@@ -22,6 +34,7 @@ const App : React.FC<Props> = (props) => {
 	const users = props.users
 
     const [selectedEntity, setSelectedEntity] = useState<Lixeira | User>()
+	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
@@ -31,7 +44,7 @@ const App : React.FC<Props> = (props) => {
 				</div>
                 <div className={styles.foreground}>
 					<div className={styles.searchCardContainer}>
-                    	<SearchCard users={users} lixeiras={lixeiras}/>
+                    	<SearchCard selectedTab={selectedTab} setSelectedTab={setSelectedTab} tabs={tabs} users={users} lixeiras={lixeiras}/>
 					</div>
 					<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
                     	<EntityCard/>

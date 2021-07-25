@@ -6,32 +6,25 @@ import MainCard from 'src/components/MainCard'
 import SearchCardHeader from './SearchCardHeader'
 import User from 'src/shared/User'
 import UserList from 'src/components/UserList'
+import { Tabs } from 'pages'
 
 interface Props {
     lixeiras : Array<Lixeira>
 	users : Array<User>
-}
-
-export interface Tabs {
-	lixeiras,
-	users,
-	routes
-}
-
-const tabs : Tabs = {
-	lixeiras : 'Lixeiras',
-	users : 'Usuarios',
-	routes  : 'Rotas'
+	selectedTab : keyof Tabs
+	setSelectedTab : (value : any) => void
+	tabs : {}
 }
 
 const SearchCard : React.FC<Props> = (props) => {
-
-	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
 	const styles = useStyles()
 
     const lixeiras = props.lixeiras
 	const users = props.users
+	const selectedTab = props.selectedTab
+	const setSelectedTab = props.setSelectedTab
+	const tabs = props.tabs
 
 	return (
 		<MainCard>
