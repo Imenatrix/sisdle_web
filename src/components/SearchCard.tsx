@@ -4,9 +4,12 @@ import { createUseStyles } from 'react-jss'
 import { Lixeira } from 'src/api/models/lixeira'
 import MainCard from 'src/components/MainCard'
 import SearchCardHeader from './SearchCardHeader'
+import { User } from 'src/api/models/user'
+import UserList from 'src/components/UserList'
 
 interface Props {
     lixeiras : Array<Lixeira>
+	users : Array<User>
 }
 
 export interface Tabs {
@@ -28,12 +31,18 @@ const SearchCard : React.FC<Props> = (props) => {
 	const styles = useStyles()
 
     const lixeiras = props.lixeiras
+	const users = props.users
 
 	return (
 		<MainCard>
 			<div className={styles.content}>
 				<SearchCardHeader selectedTab={selectedTab} onTabsSelect={setSelectedTab} tabs={tabs}/>
-				<EntityList lixeiras={lixeiras}/>
+				{selectedTab == 'lixeiras' &&
+					<EntityList lixeiras={lixeiras}/>
+				}
+				{selectedTab == 'users' &&
+					<UserList users={users}/>
+				}
 			</div>
 		</MainCard>
 	)
