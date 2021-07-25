@@ -3,10 +3,18 @@ import Lixeira from 'src/shared/Lixeira'
 import { createUseStyles } from 'react-jss'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import { MdAdd } from 'react-icons/md'
+import { Tabs } from 'pages'
+import User from 'src/shared/User'
 
-const NewEntityPod : React.FC = () => {
+interface Props {
+    selectedTab : keyof Tabs
+}
+
+const NewEntityPod : React.FC<Props> = (props) => {
 
     const styles = useStyles()
+
+    const selectedTab = props.selectedTab
 
     function createNewLixeira(setSelected : (selected : Lixeira) => void) {
         const lixeira : Lixeira = {
@@ -27,10 +35,24 @@ const NewEntityPod : React.FC = () => {
         setSelected(lixeira)
     }
 
+    function createNewUser(setSelected : (selected : User) => void) {
+        const user = new User(undefined, '', '', '')
+        setSelected(user)
+    }
+
+    function onClick(setSelected : (selected : Lixeira | User) => void) {
+        if (selectedTab == 'lixeiras') {
+            createNewLixeira(setSelected)
+        }
+        else if (selectedTab == 'users') {
+            createNewUser(setSelected)
+        }
+    }
+
     return (
         <SelectedEntityContext.Consumer>
             {({selected, setSelected}) => (
-                <div className={styles.container} onClick={() => createNewLixeira(setSelected)}>
+                <div className={styles.container} onClick={() => onClick(setSelected)}>
                     <MdAdd color="lightgray" size={30}/>
                 </div>
             )}
