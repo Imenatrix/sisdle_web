@@ -1,7 +1,7 @@
 import React from 'react'
 import Capacitometer from 'src/components/Capacitometer'
 import { createUseStyles } from 'react-jss'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 interface Props {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import { createUseStyles } from 'react-jss'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import { MdAdd } from 'react-icons/md'

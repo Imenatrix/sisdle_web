@@ -3,10 +3,12 @@ import Map from 'src/components/Map'
 import SearchCard from 'src/components/SearchCard'
 import EntityCard from 'src/components/EntityCard'
 import { createUseStyles } from 'react-jss'
-import LixeiraModel, { Lixeira } from 'src/api/models/lixeira'
+import LixeiraModel from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import { GetServerSideProps } from 'next'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
-import UserModel, { User } from 'src/api/models/user'
+import UserModel from 'src/api/models/user'
+import User from 'src/shared/User'
 
 interface Props {
     lixeiras : Array<Lixeira>,

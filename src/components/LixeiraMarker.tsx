@@ -1,7 +1,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { Marker } from 'react-map-gl'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import Capacitometer from 'src/components/Capacitometer'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 

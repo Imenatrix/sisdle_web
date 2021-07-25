@@ -1,6 +1,6 @@
 import { createContext } from 'react'
-import { Lixeira } from 'src/api/models/lixeira'
-import { User } from 'src/api/models/user'
+import Lixeira from 'src/shared/Lixeira'
+import User from 'src/shared/User'
 
 const SelectedEntityContext = createContext<{
     selected : Lixeira | User | undefined,

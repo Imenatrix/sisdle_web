@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss'
 import LixeiraForm from 'src/components/LixeiraForm'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import MainCard from './MainCard'
+import Lixeira from 'src/shared/Lixeira'
 
 const EntityCard : React.FC = () => {
 
@@ -19,7 +20,7 @@ const EntityCard : React.FC = () => {
 				</div>
 				<SelectedEntityContext.Consumer>
 					{({selected, setSelected}) => (
-						<LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected}/>
+						<LixeiraForm savePressed={savePressed} setSavePressed={() => setSavePressed(false)} lixeira={selected instanceof Lixeira && selected}/>
 					)}
 				</SelectedEntityContext.Consumer>
 			</div>

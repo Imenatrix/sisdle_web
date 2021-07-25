@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import EntityList from 'src/components/EntityList'
 import { createUseStyles } from 'react-jss'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import MainCard from 'src/components/MainCard'
 import SearchCardHeader from './SearchCardHeader'
-import { User } from 'src/api/models/user'
+import User from 'src/shared/User'
 import UserList from 'src/components/UserList'
 
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
-import { User } from 'src/api/models/user'
+import User from 'src/shared/User'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 interface Props {

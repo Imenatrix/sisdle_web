@@ -1,6 +1,6 @@
 import React from 'react'
 import UserPod from 'src/components/UserPod'
-import { User } from 'src/api/models/user'
+import User from 'src/shared/User'
 import { createUseStyles } from 'react-jss'
 import NewEntityPod from './NewEntityPod'
 
