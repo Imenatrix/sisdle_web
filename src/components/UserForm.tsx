@@ -13,7 +13,7 @@ const UserForm : React.FC<Props> = (props) => {
 	const styles = useStyles()
 
 	const user = props.user || {
-		_id : '',
+		_id : undefined,
 		name : '',
         login : '',
         password : '',
@@ -69,11 +69,13 @@ const UserForm : React.FC<Props> = (props) => {
             <label className={styles.lbl} htmlFor="admin">Admin:</label>
 			<input value={admin} onChange={(event) => setAdmin(event.target.value)} className={styles.txt} type="text" id="admin"/>
 
-            <label className={styles.lbl} htmlFor="password">Password:</label>
-			<input value={password} onChange={(event) => setPassword(event.target.value)} className={styles.txt} type="password" id="password"/>
+            {user._id == undefined && <>
+                <label className={styles.lbl} htmlFor="password">Password:</label>
+                <input value={password} onChange={(event) => setPassword(event.target.value)} className={styles.txt} type="password" id="password"/>
 
-            <label className={styles.lbl} htmlFor="password">Confirm the password:</label>
-			<input value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className={styles.txt} type="password" id="name"/>
+                <label className={styles.lbl} htmlFor="password">Confirm the password:</label>
+                <input value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className={styles.txt} type="password" id="name"/>
+            </> }
 		</div>
 	)
 
