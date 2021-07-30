@@ -37,7 +37,6 @@ const UserForm : React.FC<Props> = (props) => {
     useEffect(() => {
         if (props.savePressed) {
             const newUser = new User(user._id, admin, login, password)
-            console.log(newUser)
             
             const checkUserExistanceAndMakeAsyncRequest = async () => {
                 if (newUser._id == undefined) {
