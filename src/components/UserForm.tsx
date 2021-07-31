@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { createUseStyles } from 'react-jss'
 import User from 'src/shared/User'
+import UserContext from './contexts/UserContext'
 
 interface Props {
 	user : User,
@@ -11,6 +13,7 @@ interface Props {
 const UserForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
+    const loggedInUser = useContext(UserContext)
 
 	const user = props.user || {
 		_id : undefined,
@@ -20,16 +23,15 @@ const UserForm : React.FC<Props> = (props) => {
         admin : ''
 	}
 
+    const admin = user.admin
 	const [name, setName] = useState(user.name)
     const [login, setLogin] = useState(user.login)
-    const [admin, setAdmin] = useState(user.admin)
     const [password, setPassword] = useState(user.password)
     const [confirmPassword, setConfirmPassword] = useState('')
  
 	useEffect(() => {
         setName(user.name)
         setLogin(user.login)
-        setAdmin(user.admin)
         setPassword(user.password)
         setConfirmPassword('')
 	}, [props.user])
@@ -64,9 +66,6 @@ const UserForm : React.FC<Props> = (props) => {
 
             <label className={styles.lbl} htmlFor="login">login:</label>
 			<input value={login} onChange={(event) => setLogin(event.target.value)} className={styles.txt} type="text" id="login"/>
-
-            <label className={styles.lbl} htmlFor="admin">Admin:</label>
-			<input value={admin} onChange={(event) => setAdmin(event.target.value)} className={styles.txt} type="text" id="admin"/>
 
             {user._id == undefined && <>
                 <label className={styles.lbl} htmlFor="password">Password:</label>
