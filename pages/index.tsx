@@ -64,8 +64,9 @@ const App : React.FC<Props> = (props) => {
 export default App
 
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
-    const lixeiras = await LixeiraModel.find({})
-	const users = await UserModel.find({})
+	const user = (ctx.req as any).user
+    const lixeiras = await LixeiraModel.find({properties : {admin : user.admin}})
+	const users = await UserModel.find({admin : user.admin})
     return {
         props : {
             lixeiras : JSON.parse(JSON.stringify(lixeiras)),
