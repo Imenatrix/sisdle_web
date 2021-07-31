@@ -10,9 +10,9 @@ export function parseLixeiraToPlainObject(query) {
     }))
     return lixeiras
 }
-export function createUserToken(login) {
+export function createUserToken(user) {
 
-    return jwt.sign({ id: login }, process.env.JWT_SECRETKEY, { expiresIn: '1d' });
+    return jwt.sign(user, process.env.JWT_SECRETKEY, { expiresIn: '1d' });
 
 }
 

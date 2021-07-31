@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 
         const user = await User.create(req.body);
         user.password = undefined;
-        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).send({ user });
+        return res.cookie('auth_token', createUserToken(user.toJSON()), { httpOnly: true, sameSite: true }).send({ user });
     } catch (err) {
         return res.status(400).send({ error: 'Falha ao criar usuário' });
     }
@@ -43,9 +43,10 @@ router.post('/login', async (req, res) => {
         const from = req.cookies['from'];
         res.clearCookie('from');
 
-        return res.cookie('auth_token', createUserToken(user.login), { httpOnly: true, sameSite: true }).redirect(from || '/');
+        return res.cookie('auth_token', createUserToken(user.toJSON()), { httpOnly: true, sameSite: true }).redirect(from || '/');
 
     } catch (err) {
+        console.log(err)
         return res.status(400).send({ error: 'Falha ao buscar usuário' });
     }
 
