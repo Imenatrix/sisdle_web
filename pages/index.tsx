@@ -9,10 +9,12 @@ import { GetServerSideProps } from 'next'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 import UserModel from 'src/api/models/user'
 import User from 'src/shared/User'
+import UserContext from 'src/components/contexts/UserContext'
 
 interface Props {
     lixeiras : Array<Lixeira>,
 	users : Array<User>
+	user : User
 }
 
 export interface Tabs {
@@ -30,6 +32,7 @@ const tabs : Tabs = {
 const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
+	const user = props.user
     const lixeiras = props.lixeiras
 	const users = props.users
 
@@ -43,19 +46,21 @@ const App : React.FC<Props> = (props) => {
 
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
-            <div className={styles.container}>
-				<div className={styles.mapContainer}>
-                	<Map lixeiras={lixeiras} center={(selectedEntity instanceof Lixeira) && selectedEntity?.geometry.coordinates}/>
+			<UserContext.Provider value={user}>
+				<div className={styles.container}>
+					<div className={styles.mapContainer}>
+						<Map lixeiras={lixeiras} center={(selectedEntity instanceof Lixeira) && selectedEntity?.geometry.coordinates}/>
+					</div>
+					<div className={styles.foreground}>
+						<div className={styles.searchCardContainer}>
+							<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
+						</div>
+						<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
+							<EntityCard selectedTab={selectedTab}/>
+						</div>
+					</div>
 				</div>
-                <div className={styles.foreground}>
-					<div className={styles.searchCardContainer}>
-                    	<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
-					</div>
-					<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
-                    	<EntityCard selectedTab={selectedTab}/>
-					</div>
-                </div>
-            </div>
+			</UserContext.Provider>
         </SelectedEntityContext.Provider>
 	)
 
@@ -69,6 +74,7 @@ export const getServerSideProps : GetServerSideProps = async (ctx) => {
 	const users = await UserModel.find({admin : user.admin})
     return {
         props : {
+			user : user,
             lixeiras : JSON.parse(JSON.stringify(lixeiras)),
 			users : JSON.parse(JSON.stringify(users))
         }
