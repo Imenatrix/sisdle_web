@@ -3,33 +3,56 @@ import Map from 'src/components/Map'
 import SearchCard from 'src/components/SearchCard'
 import EntityCard from 'src/components/EntityCard'
 import { createUseStyles } from 'react-jss'
-import LixeiraModel, { Lixeira } from 'src/api/models/lixeira'
+import LixeiraModel from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import { GetServerSideProps } from 'next'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
+import UserModel from 'src/api/models/user'
+import User from 'src/shared/User'
 
 interface Props {
-    lixeiras : Array<Lixeira>
+    lixeiras : Array<Lixeira>,
+	users : Array<User>
+}
+
+export interface Tabs {
+	lixeiras,
+	users,
+	routes
+}
+
+const tabs : Tabs = {
+	lixeiras : 'Lixeiras',
+	users : 'Usuarios',
+	routes  : 'Rotas'
 }
 
 const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
     const lixeiras = props.lixeiras
+	const users = props.users
 
-    const [selectedEntity, setSelectedEntity] = useState<Lixeira>()
+    const [selectedEntity, setSelectedEntity] = useState<Lixeira | User>()
+	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
+
+	function onTabSelected(tab : keyof Tabs) {
+		setSelectedTab(tab)
+		setSelectedEntity(undefined)
+	}
 
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
             <div className={styles.container}>
 				<div className={styles.mapContainer}>
-                	<Map lixeiras={lixeiras} center={selectedEntity?.geometry.coordinates}/>
+                	<Map lixeiras={lixeiras} center={(selectedEntity instanceof Lixeira) && selectedEntity?.geometry.coordinates}/>
 				</div>
                 <div className={styles.foreground}>
 					<div className={styles.searchCardContainer}>
-                    	<SearchCard lixeiras={lixeiras}/>
+                    	<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
 					</div>
 					<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
-                    	<EntityCard/>
+                    	<EntityCard selectedTab={selectedTab}/>
 					</div>
                 </div>
             </div>
@@ -42,9 +65,11 @@ export default App
 
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
     const lixeiras = await LixeiraModel.find({})
+	const users = await UserModel.find({})
     return {
         props : {
-            lixeiras : JSON.parse(JSON.stringify(lixeiras))
+            lixeiras : JSON.parse(JSON.stringify(lixeiras)),
+			users : JSON.parse(JSON.stringify(users))
         }
     }
 }

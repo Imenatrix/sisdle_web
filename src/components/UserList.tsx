@@ -1,18 +1,18 @@
 import React from 'react'
-import LixeiraPod from 'src/components/LixeiraPod'
-import Lixeira from 'src/shared/Lixeira'
+import UserPod from 'src/components/UserPod'
+import User from 'src/shared/User'
 import { createUseStyles } from 'react-jss'
 import NewEntityPod from './NewEntityPod'
 import { Tabs } from 'pages'
 
 interface Props {
-    lixeiras : Array<Lixeira>
+    users : Array<User>
     selectedTab : keyof Tabs
 }
 
 const EntityList : React.FC<Props> = (props) => {
 
-    const lixeiras = props.lixeiras
+    const users = props.users
     const selectedTab = props.selectedTab
 
     const styles = useStyles()
@@ -20,8 +20,8 @@ const EntityList : React.FC<Props> = (props) => {
 	return (
 		<div className={styles.container}>
             <NewEntityPod selectedTab={selectedTab}/>
-            {lixeiras.map(lixeira => (
-                <LixeiraPod key={lixeira._id} lixeira={lixeira}/>
+            {users.map(user => (
+                <UserPod key={user._id} user={user}/>
             ))}
 		</div>
 	)

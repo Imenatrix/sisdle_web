@@ -1,12 +1,6 @@
 import mongoose from '../database';
 import bcrypt from 'bcrypt';
-
-
-export interface User {
-    login: string;
-    password: string;
-    name: string;
-}
+import User from 'src/shared/User';
 
 const UserSchema = new mongoose.Schema({
     login: {

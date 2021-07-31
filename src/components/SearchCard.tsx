@@ -1,39 +1,41 @@
 import React, { useState } from 'react'
 import EntityList from 'src/components/EntityList'
 import { createUseStyles } from 'react-jss'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 import MainCard from 'src/components/MainCard'
 import SearchCardHeader from './SearchCardHeader'
+import User from 'src/shared/User'
+import UserList from 'src/components/UserList'
+import { Tabs } from 'pages'
 
 interface Props {
     lixeiras : Array<Lixeira>
-}
-
-export interface Tabs {
-	lixeiras,
-	users,
-	routes
-}
-
-const tabs : Tabs = {
-	lixeiras : 'Lixeiras',
-	users : 'Usuarios',
-	routes  : 'Rotas'
+	users : Array<User>
+	selectedTab : keyof Tabs
+	setSelectedTab : (value : any) => void
+	tabs : {}
 }
 
 const SearchCard : React.FC<Props> = (props) => {
 
-	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
-
 	const styles = useStyles()
 
     const lixeiras = props.lixeiras
+	const users = props.users
+	const selectedTab = props.selectedTab
+	const setSelectedTab = props.setSelectedTab
+	const tabs = props.tabs
 
 	return (
 		<MainCard>
 			<div className={styles.content}>
 				<SearchCardHeader selectedTab={selectedTab} onTabsSelect={setSelectedTab} tabs={tabs}/>
-				<EntityList lixeiras={lixeiras}/>
+				{selectedTab == 'lixeiras' &&
+					<EntityList selectedTab={selectedTab} lixeiras={lixeiras}/>
+				}
+				{selectedTab == 'users' &&
+					<UserList selectedTab={selectedTab} users={users}/>
+				}
 			</div>
 		</MainCard>
 	)

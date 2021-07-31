@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 
 interface Props {
 	lixeira : Lixeira,

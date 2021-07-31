@@ -1,27 +1,25 @@
 import React from 'react'
-import Capacitometer from 'src/components/Capacitometer'
 import { createUseStyles } from 'react-jss'
-import Lixeira from 'src/shared/Lixeira'
+import User from 'src/shared/User'
 import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext'
 
 interface Props {
-    lixeira : Lixeira
+    user : User
 }
 
 const LixeiraPod : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
 
-    const lixeira = props.lixeira
+    const user = props.user
 
 	return (
         <SelectedEntityContext.Consumer>
             {({selected, setSelected}) => (
-                <div className={styles.container} onClick={() => setSelected(lixeira)}>
-                    <Capacitometer capacity={lixeira.properties.capacity} className={styles.capacitometer}/>
+                <div className={styles.container} onClick={() => setSelected(user)}>
                     <div className={styles.txtContainer}>
-                        <div className={styles.txtLocation}>{lixeira.properties.location}</div>
-                        <div className={styles.txtDescription}>{lixeira.properties.description}</div>
+                        <div className={styles.txtName}>{user.name}</div>
+                        <div className={styles.txtLogin}>{user.login}</div>
                     </div>
                 </div>
             )}
@@ -45,14 +43,11 @@ const useStyles = createUseStyles({
 		padding : '0.5em',
         borderLeft : ['solid', 'lightgray', 1]
 	},
-    txtLocation : {
+    txtName : {
 
     },
-    txtDescription : {
+    txtLogin : {
         marginTop : '0.5em',
         fontSize : 10
-    },
-	capacitometer : {
-		flex : 0.1
-	}
+    }
 })

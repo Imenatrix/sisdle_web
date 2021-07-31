@@ -1,8 +1,7 @@
 import React from 'react'
-import { useRef } from 'react'
 import { createUseStyles } from 'react-jss'
 import { Popup } from 'react-map-gl'
-import { Lixeira } from 'src/api/models/lixeira'
+import Lixeira from 'src/shared/Lixeira'
 
 interface Props {
     lixeira : Lixeira
