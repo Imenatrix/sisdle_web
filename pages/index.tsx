@@ -65,7 +65,7 @@ export default App
 
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
 	const user = (ctx.req as any).user
-    const lixeiras = await LixeiraModel.find({properties : {admin : user.admin}})
+    const lixeiras = await LixeiraModel.find({'properties.admin' : user.admin})
 	const users = await UserModel.find({admin : user.admin})
     return {
         props : {
