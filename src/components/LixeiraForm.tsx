@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { createUseStyles } from 'react-jss'
 import Lixeira from 'src/shared/Lixeira'
+import UserContext from './contexts/UserContext'
 
 interface Props {
 	lixeira : Lixeira,
@@ -11,6 +13,7 @@ interface Props {
 const LixeiraForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
+	const user = useContext(UserContext)
 
 	const lixeira = props.lixeira || {
 		_id : '',
@@ -27,7 +30,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
 		}
 	}
 
-	const [admin, setAdmin] = useState(lixeira.properties.admin)
+	const admin = user.admin
 	const [location, setLocation] = useState(lixeira.properties.location)
 	const [capacity, setCapacity] = useState(lixeira.properties.capacity)
 	const [latitude, setLatitude] = useState(lixeira.geometry.coordinates[1])
