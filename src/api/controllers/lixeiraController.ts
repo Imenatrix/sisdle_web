@@ -41,6 +41,7 @@ router.patch('/', async (req, res) => {
                         "coordinates": [req.body.geometry.coordinates[0], req.body.geometry.coordinates[1]]
                     },
                     "properties": {
+                        "admin" : req.body.properties.admin,
                         "location": req.body.properties.location,
                         "description": req.body.properties.description,
                         "capacity": req.body.properties.capacity,
