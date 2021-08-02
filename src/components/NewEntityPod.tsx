@@ -18,7 +18,6 @@ const NewEntityPod : React.FC<Props> = (props) => {
 
     function createNewLixeira(setSelected : (selected : Lixeira) => void) {
         const lixeira : Lixeira = {
-            _id : '',
             type : 'Feature',
             properties : {
                 admin : '',

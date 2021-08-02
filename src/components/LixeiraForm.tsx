@@ -16,7 +16,6 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	const user = useContext(UserContext)
 
 	const lixeira = props.lixeira || {
-		_id : '',
 		type : 'Feature',
 		properties : {
 			admin : '',
@@ -69,6 +68,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                     distanceCover : distanceCover
                 }
             }
+			console.log(newLixeira)
             
             const checkLixeiraExistenceAndMakeAsyncRequest = async () => {
                 if (newLixeira._id == undefined) {
