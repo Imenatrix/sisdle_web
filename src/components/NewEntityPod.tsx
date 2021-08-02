@@ -18,18 +18,19 @@ const NewEntityPod : React.FC<Props> = (props) => {
 
     function createNewLixeira(setSelected : (selected : Lixeira) => void) {
         const lixeira : Lixeira = {
+            _id : '',
             type : 'Feature',
+            properties : {
+                admin : '',
+                location : '',
+                capacity : 0,
+                description : '',
+                distanceCover : 0,
+                distanceBottom : 0
+            },
             geometry : {
                 type : 'Point',
-                coordinates : [null, null]
-            },
-            properties : {
-                admin : null,
-                location : null,
-                description : null,
-                capacity : null,
-                distanceBottom : null,
-                distanceCover : null
+                coordinates : [0, 0]
             }
         }
         setSelected(lixeira)
