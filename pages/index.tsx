@@ -49,7 +49,7 @@ const App : React.FC<Props> = (props) => {
 			<UserContext.Provider value={user}>
 				<div className={styles.container}>
 					<div className={styles.mapContainer}>
-						<Map lixeiras={lixeiras} center={(selectedEntity instanceof Lixeira) && selectedEntity?.geometry.coordinates}/>
+						<Map lixeiras={lixeiras} center={selectedTab == 'lixeiras' && (selectedEntity as Lixeira)?.geometry.coordinates}/>
 					</div>
 					<div className={styles.foreground}>
 						<div className={styles.searchCardContainer}>
