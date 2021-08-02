@@ -17,6 +17,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
 
 	const lixeira = props.lixeira || {
 		_id : '',
+		type : 'Feature',
 		properties : {
 			admin : '',
 			location : '',
@@ -26,6 +27,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
 			distanceBottom : 0
 		},
 		geometry : {
+			type : 'Point',
 			coordinates : [0, 0]
 		}
 	}
