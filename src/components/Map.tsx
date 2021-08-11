@@ -39,11 +39,7 @@ const Map : React.FC<Props> = (props) => {
 			setViewport(newViewport)
 		}
 	}, [props.center])
-
-	useEffect(() => {
-		console.log(showCallout)
-	})
-
+	
 	function toggleCalloutTrue(lixeira : Lixeira) {
 		setShowCallout({
 			[lixeira._id] : true
