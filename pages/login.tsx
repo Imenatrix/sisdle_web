@@ -9,7 +9,7 @@ const Login : React.FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<img src="imgs/login-background.jpg" alt="" width="100%" />
+			<img src="imgs/login-background.png" alt="" width="100%" />
 			<div className={styles.foreground}>
 				<LoginCard/>
 			</div>
