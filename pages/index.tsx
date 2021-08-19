@@ -10,6 +10,7 @@ import SelectedEntityContext from 'src/components/contexts/SelectedEntityContext
 import UserModel from 'src/api/models/user'
 import User from 'src/shared/User'
 import UserContext from 'src/components/contexts/UserContext'
+import LixeirasContext from 'src/components/contexts/LixeirasContext'
 
 interface Props {
     lixeiras : Array<Lixeira>,
@@ -33,9 +34,9 @@ const App : React.FC<Props> = (props) => {
 
 	const styles = useStyles()
 	const user = props.user
-    const lixeiras = props.lixeiras
 	const users = props.users
-
+	
+    const [lixeiras, setLixeiras] = useState(props.lixeiras)
     const [selectedEntity, setSelectedEntity] = useState<Lixeira | User>()
 	const [selectedTab, setSelectedTab] = useState<keyof Tabs>('lixeiras')
 
@@ -47,19 +48,21 @@ const App : React.FC<Props> = (props) => {
 	return (
         <SelectedEntityContext.Provider value={{selected : selectedEntity, setSelected : (selected) => setSelectedEntity(selected)}}>
 			<UserContext.Provider value={user}>
-				<div className={styles.container}>
-					<div className={styles.mapContainer}>
-						<Map lixeiras={lixeiras} center={selectedTab == 'lixeiras' && (selectedEntity as Lixeira)?.geometry.coordinates}/>
-					</div>
-					<div className={styles.foreground}>
-						<div className={styles.searchCardContainer}>
-							<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
+				<LixeirasContext.Provider value={{lixeiras : lixeiras, setLixeiras : setLixeiras}}>
+					<div className={styles.container}>
+						<div className={styles.mapContainer}>
+							<Map lixeiras={lixeiras} center={selectedTab == 'lixeiras' && (selectedEntity as Lixeira)?.geometry.coordinates}/>
 						</div>
-						<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
-							<EntityCard selectedTab={selectedTab}/>
+						<div className={styles.foreground}>
+							<div className={styles.searchCardContainer}>
+								<SearchCard selectedTab={selectedTab} setSelectedTab={onTabSelected} tabs={tabs} users={users} lixeiras={lixeiras}/>
+							</div>
+							<div className={styles.entityCardContainer  + ' ' + (selectedEntity == undefined && styles.hidden)}>
+								<EntityCard selectedTab={selectedTab}/>
+							</div>
 						</div>
 					</div>
-				</div>
+				</LixeirasContext.Provider>
 			</UserContext.Provider>
         </SelectedEntityContext.Provider>
 	)
