@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
         const lixeira = await Lixeira.create(req.body);
         const id = lixeira._id;
 
-        return res.send({ id });
+        return res.send(lixeira);
     } catch (err) {
         return res.status(400).send({ error: 'Registration failed' });
     }
@@ -57,12 +57,7 @@ router.patch('/', async (req, res) => {
         );
         const id = lixeira._id;
 
-        return res.send({
-            id, ...JSON.parse(JSON.stringify(lixeira)),
-            _id: undefined,
-            __v: undefined,
-
-        });
+        return res.send(lixeira);
     } catch (err) {
         return res.status(400).send({ error: 'Update failed' });
     }
