@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { createUseStyles } from 'react-jss'
 import User from 'src/shared/User'
 import UserContext from './contexts/UserContext'
+import UsersContext from './contexts/UsersContext'
 
 interface Props {
 	user : User,
@@ -14,6 +15,7 @@ const UserForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
     const loggedInUser = useContext(UserContext)
+    const {users, setUsers} = useContext(UsersContext)
 
 	const user = props.user || {
 		_id : undefined,
@@ -23,7 +25,7 @@ const UserForm : React.FC<Props> = (props) => {
         admin : ''
 	}
 
-    const admin = user.admin
+    const admin = loggedInUser.admin
 	const [name, setName] = useState(user.name)
     const [login, setLogin] = useState(user.login)
     const [password, setPassword] = useState(user.password)
@@ -50,6 +52,13 @@ const UserForm : React.FC<Props> = (props) => {
                         },
                         body : JSON.stringify(newUser)
                     })
+                    if (res.status >= 400) {
+
+                    }
+                    else {
+                        const responseUser : User = await res.json()
+                        setUsers([responseUser, ...users.filter(user => user._id != responseUser._id)])
+                    }
                 }
             }
 
