@@ -38,7 +38,7 @@ const LoginCard : React.FC = () => {
 					<p className={styles.error}>Usuário ou senha incorretos.</p>
 				}
 				<input className={styles.txt} value={login} onChange={e => setLogin(e.target.value)} placeholder="Login"/>
-				<input className={styles.txt} value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha"/>
+				<input className={styles.txt} value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="Senha"/>
 				<button className={styles.btn} onClick={tryLogin}>Entrar</button>
 			</div>
 		</MainCard>
