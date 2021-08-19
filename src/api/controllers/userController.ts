@@ -33,11 +33,11 @@ router.post('/login', async (req, res) => {
     try {
         //Verifica se o login existe
         const user = await User.findOne({ login });
-        if (!user) return res.send({ error: 'Usuário não registrado' });
+        if (!user) return res.status(401).send({ error: 'Usuário não registrado' });
 
         //Compara a senha enviada com a do banco de dados
         const result = await bcrypt.compare(password, user.password);
-        if (!result) return res.send({ error: 'Senha incorreta' });
+        if (!result) return res.status(401).send({ error: 'Senha incorreta' });
         user.password = undefined;
 
         const from = req.cookies['from'];
