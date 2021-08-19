@@ -21,7 +21,8 @@ export default Login
 
 const useStyles = createUseStyles({
 	'@global body' : {
-		margin : 0
+		margin : 0,
+		fontFamily : 'sans-serif'
 	},
 	'container' : {
 		'display' : 'flex',
