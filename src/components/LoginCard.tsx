@@ -34,6 +34,7 @@ const LoginCard : React.FC = () => {
 	return (
 		<MainCard>
 			<div className={styles.content}>
+				<img src="imgs/logo.png" width="250" className={styles.logo}/>
 				{error &&
 					<p className={styles.error}>Usuário ou senha incorretos.</p>
 				}
@@ -80,5 +81,9 @@ const useStyles = createUseStyles({
 		color : '#f02849',
 		position : 'relative',
 		top : 0
+	},
+	logo : {
+		marginLeft : 'auto',
+		marginRight : 'auto'
 	}
 })
