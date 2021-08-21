@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { createUseStyles } from 'react-jss'
 import Lixeira from 'src/shared/Lixeira'
+import LixeirasContext from './contexts/LixeirasContext'
 import UserContext from './contexts/UserContext'
 
 interface Props {
@@ -14,6 +15,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
 	
 	const styles = useStyles()
 	const user = useContext(UserContext)
+	const {lixeiras, setLixeiras} = useContext(LixeirasContext)
 
 	const lixeira = props.lixeira || {
 		type : 'Feature',
@@ -68,11 +70,11 @@ const LixeiraForm : React.FC<Props> = (props) => {
                     distanceCover : distanceCover
                 }
             }
-			console.log(newLixeira)
             
             const checkLixeiraExistenceAndMakeAsyncRequest = async () => {
+				let res : Response
                 if (newLixeira._id == undefined) {
-                    const res = await fetch('/lixeira', {
+                    res = await fetch('/lixeira', {
                         method : 'POST',
                         headers: {
                             Accept: 'application/json',
@@ -82,7 +84,7 @@ const LixeiraForm : React.FC<Props> = (props) => {
                     })
                 }
                 else {
-                    const res = await fetch('/lixeira', {
+                    res = await fetch('/lixeira', {
                         method : 'PATCH',
                         headers: {
                             Accept: 'application/json',
@@ -91,6 +93,13 @@ const LixeiraForm : React.FC<Props> = (props) => {
                         body : JSON.stringify({id : newLixeira._id, _id : undefined, ...newLixeira})
                     })
                 }
+				if (res.status >= 400) {
+
+				}
+				else {
+					const responseLixeira : Lixeira = await res.json()
+					setLixeiras([responseLixeira, ...lixeiras.filter(lixeira => lixeira._id != responseLixeira._id)])
+				}
             }
 
             checkLixeiraExistenceAndMakeAsyncRequest()
