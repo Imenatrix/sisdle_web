@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
     },
     txtDescription : {
         marginTop : '0.5em',
-        fontSize : 10
+        fontSize : 13
     },
 	capacitometer : {
 		flex : 0.1

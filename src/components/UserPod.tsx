@@ -48,6 +48,6 @@ const useStyles = createUseStyles({
     },
     txtLogin : {
         marginTop : '0.5em',
-        fontSize : 10
+        fontSize : 13
     }
 })
